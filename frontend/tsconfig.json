@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "target": "es5",                             // Set the JavaScript language version to which TypeScript should compile (default is ES3).
+      "lib": ["dom", "dom.iterable", "esnext"],    // Include the necessary libraries.
+      "allowJs": true,                             // Allow JavaScript files to be compiled.
+      "skipLibCheck": true,                        // Skip checking of declaration files for libraries.
+      "esModuleInterop": true,                     // Enable ES module interoperability for CommonJS-style imports.
+      "allowSyntheticDefaultImports": true,        // Allow default imports even if the module doesn't have a default export.
+      "strict": true,                              // Enable strict type-checking options.
+      "forceConsistentCasingInFileNames": true,    // Ensure that file names are consistent across the project (case-sensitive).
+      "module": "esnext",                          // Use ES Modules as the module system.
+      "moduleResolution": "node",                  // Resolve modules in a Node.js style.
+      "resolveJsonModule": true,                   // Allow importing of JSON files as modules.
+      "isolatedModules": true,                     // Ensure that each file can be safely transpiled independently.
+      "noEmit": true,                              // Don't emit output files (e.g., JavaScript files) if not needed.
+      "jsx": "react-jsx"                           // Enable JSX syntax for React with the new JSX Transform.
+    },
+    "include": [
+      "src/**/*"                                   // Include all files in the src directory.
+    ],
+    "exclude": [
+      "node_modules"                               // Exclude the node_modules directory from being compiled.
+    ]
+}
