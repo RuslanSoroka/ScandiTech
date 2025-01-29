@@ -1,8 +1,8 @@
 import React from "react";
 import { IProduct } from "../../models";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import styles from "./Product.styles";
 import Rating from "../Rating";
+import styles from "./Product.styles";
 
 interface ProductProps {
     product: IProduct;
@@ -12,11 +12,7 @@ const Product = ({ product }: ProductProps) => {
     const {
         name,
         image,
-        description,
-        brand,
-        category,
         price,
-        countInStock,
         rating,
         numReviews,
     } = product;
@@ -28,7 +24,7 @@ const Product = ({ product }: ProductProps) => {
                 </Box>
                 <Typography
                     sx={styles.productName}
-                    variant="subtitle2"
+                    variant={"h4"}
                     component={"h3"}
                 >
                     {name}
