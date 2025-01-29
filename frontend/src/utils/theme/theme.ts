@@ -1,8 +1,11 @@
-import { createTheme } from "@mui/material/styles";
+import { createTheme, Breakpoints } from "@mui/material/styles";
 
 declare module '@mui/material/styles' {
     interface TypeBackground {
         header?: string;
+    }
+    interface BreakpointOverrides {
+        xxl: true;
     }
 }
 
@@ -104,10 +107,11 @@ const theme = createTheme({
     breakpoints: {
         values: {
             xs: 0,
-            sm: 600,
-            md: 960,
-            lg: 1280,
-            xl: 1920,
+            sm: 576,
+            md: 768,
+            lg: 992,
+            xl: 1200,
+            xxl: 1920
         },
     },
 

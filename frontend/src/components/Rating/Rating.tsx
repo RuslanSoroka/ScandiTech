@@ -9,7 +9,7 @@ interface RatingProps {
 
 const Rating = ({ rating, numReviews }: RatingProps) => {
     return (
-        <Stack direction={"row"}>
+        <Stack direction={"row"} alignItems={"center"} spacing={1}>
             <Rate value={rating} readOnly />
             <Typography variant="body2" component={"span"}>
                 {numReviews} reviews
