@@ -1,5 +1,3 @@
-import { FaZhihu } from "react-icons/fa";
-
 const styles = {
     card: {
         padding: "1rem",

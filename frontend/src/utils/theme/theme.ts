@@ -1,6 +1,6 @@
 import { createTheme, Breakpoints } from "@mui/material/styles";
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
     interface TypeBackground {
         header?: string;
     }
@@ -25,7 +25,7 @@ const theme = createTheme({
             header: "#1D3354", // Surface background (e.g., cards)
         },
         text: {
-            primary: "#000000", // Main text color
+            primary: "#ffffff", // Main text color
             secondary: "#555555", // Secondary text color
             disabled: "rgba(0, 0, 0, 0.38)", // Disabled text color
         },
@@ -111,10 +111,18 @@ const theme = createTheme({
             md: 768,
             lg: 992,
             xl: 1200,
-            xxl: 1920
+            xxl: 1920,
         },
     },
-
+    components: {
+MuiTypography: {
+    styleOverrides: {
+        root: {
+            color: "#555555",
+        },
+    }
+}
+    },
 });
 
 export default theme;

@@ -1,6 +1,6 @@
-import { Theme } from "@emotion/react";
+import { Theme } from "@mui/material";
 
-const styles = (theme: Theme) => ({
+const styles = {
     toolbar: {
         "&": {
             padding: 0,
@@ -35,6 +35,6 @@ const styles = (theme: Theme) => ({
             color: "black",
         },
     },
-});
+};
 
 export default styles;
