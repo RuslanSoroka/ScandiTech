@@ -1,0 +1,15 @@
+{
+  "name": "scanditech",
+  "version": "2.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Ruslan Soroka",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
