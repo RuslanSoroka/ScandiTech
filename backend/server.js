@@ -1,7 +1,11 @@
 import express from "express";
-import products from "./data/products.js";
+import connectDB from "./config/db.js";
 import dotenv from "dotenv";
+import { notFound, errorHandler } from "./middleware/errorMidlleware.js";
+import productRoutes from "./routes/productsRoutes.js";
 dotenv.config();
+
+connectDB();
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -9,14 +13,11 @@ app.get("/", (req, res) => {
     console.log(`hey hey`);
 });
 
-app.get("/products", (req, res)=> {
-    res.send(products);
-})
+app.use("/products", productRoutes);
 
-app.get("/products/:id", (req, res)=> {
-    const product = products.find(product => product._id === req.params.id)
-    res.send(product);
-})
+app.use(notFound);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
