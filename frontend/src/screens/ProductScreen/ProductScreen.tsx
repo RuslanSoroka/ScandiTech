@@ -1,39 +1,12 @@
 import { Box, Button, Typography, Paper } from "@mui/material";
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import styles from "./ProductScreen.styles";
-import axios from "axios";
-import { IProduct } from "../../models";
+import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
 
 const ProductScreen = () => {
     const { id: ProducId } = useParams();
-    const [product, setProduct] = useState<IProduct>({
-        _id: "",
-        name: "",
-        image: "",
-        description: "",
-        brand: "",
-        category: "",
-        price: 0,
-        countInStock: 0,
-        rating: 0,
-        numReviews: 0
-    });
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const { data } = await axios.get<IProduct>(
-                    `/products/${ProducId}`
-                );
-                console.log(data);
-                setProduct(data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchProduct();
-    }, []);
+    const {data: product} = useGetProductByIdQuery(ProducId ?? '')
 
     return (
         product && (

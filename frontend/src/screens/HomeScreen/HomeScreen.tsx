@@ -1,24 +1,9 @@
-import { useEffect, useState } from "react";
 import { Grid, Typography } from "@mui/material";
-// import products from "../../products";
 import Product from "../../components/Product";
-import axios from "axios";
-import { IProduct } from "../../models";
+import { useGetAllProductsQuery } from "../../redux/apiSlices/productsSlice";
 
 const HomeScreen = () => {
-    const [products, setProducts] = useState<IProduct[] | []>([]);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const { data } = await axios.get<IProduct[]>("/products");
-                setProducts(data);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchProducts();
-    }, []);
+    const {data: products} = useGetAllProductsQuery(); 
 
     return (
         <>
@@ -35,7 +20,7 @@ const HomeScreen = () => {
                 Products
             </Typography>
             <Grid container spacing={2}>
-                {products.map((product) => {
+                {products?.map((product) => {
                     return (
                         <Grid
                             xs={12}
