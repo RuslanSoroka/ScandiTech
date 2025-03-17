@@ -16,7 +16,7 @@
       "jsx": "react-jsx"                           // Enable JSX syntax for React with the new JSX Transform.
     },
     "include": [
-      "src/**/*"                                   // Include all files in the src directory.
+      "src/**/*",                                   // Include all files in the src directory.
     ],
     "exclude": [
       "node_modules"                               // Exclude the node_modules directory from being compiled.
