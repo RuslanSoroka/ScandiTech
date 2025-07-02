@@ -1,4 +1,3 @@
-import React from "react";
 import { IProduct } from "../../models";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import Rating from "../Rating";

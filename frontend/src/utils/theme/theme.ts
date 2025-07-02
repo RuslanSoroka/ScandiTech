@@ -7,6 +7,16 @@ declare module "@mui/material/styles" {
     interface BreakpointOverrides {
         xxl: true;
     }
+    interface Palette {
+        productCard: {
+            bacgroundColor: string;
+        };
+    }
+    interface PaletteOptions {
+        productCard: {
+            bacgroundColor: string;
+        };
+    }
 }
 
 const theme = createTheme({
@@ -20,7 +30,7 @@ const theme = createTheme({
             contrastText: "#ffffff", // Text color on secondary
         },
         background: {
-            default: "#ffffff", // Page background
+            default: "rgb(236, 236, 237)", // Page background
             paper: "#f4f6f8",
             header: "#1D3354", // Surface background (e.g., cards)
         },
@@ -28,6 +38,9 @@ const theme = createTheme({
             primary: "#ffffff", // Main text color
             secondary: "#555555", // Secondary text color
             disabled: "rgba(0, 0, 0, 0.38)", // Disabled text color
+        },
+        productCard: {
+            bacgroundColor: "rgb(255, 255, 255)",
         },
         divider: "rgba(0, 0, 0, 0.12)", // Divider color
     },
@@ -115,13 +128,20 @@ const theme = createTheme({
         },
     },
     components: {
-MuiTypography: {
-    styleOverrides: {
-        root: {
-            color: "#555555",
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    color: "#555555",
+                },
+            },
         },
-    }
-}
+        MuiSkeleton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "rgb(240, 240, 240)",
+                },
+            },
+        },
     },
 });
 
