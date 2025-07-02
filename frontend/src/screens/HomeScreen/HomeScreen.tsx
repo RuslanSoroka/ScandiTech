@@ -1,12 +1,17 @@
-import { Grid, Typography } from "@mui/material";
-import Product from "../../components/Product";
+import { lazy, memo, Suspense } from "react";
+import { Box, Grid, Typography } from "@mui/material";
 import { useGetAllProductsQuery } from "../../redux/apiSlices/productsSlice";
+import HomeScreenSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
+import ProductSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
+
+const Product = lazy(() => import("../../components/Product"));
+const MemoizedProduct = memo(Product);
 
 const HomeScreen = () => {
-    const {data: products} = useGetAllProductsQuery(); 
+    const { data: products} = useGetAllProductsQuery();
 
     return (
-        <>
+        <Box>
             <Typography
                 sx={(theme) => ({
                     padding: {
@@ -30,12 +35,14 @@ const HomeScreen = () => {
                             item
                             key={product._id}
                         >
-                            <Product product={product} />
+                            <Suspense fallback={<ProductSkeleton />}>
+                                <MemoizedProduct product={product} />
+                            </Suspense>
                         </Grid>
                     );
                 })}
             </Grid>
-        </>
+        </Box>
     );
 };
 
