@@ -8,11 +8,23 @@ declare module "@mui/material/styles" {
         xxl: true;
     }
     interface Palette {
+        errors: {
+            color: string;
+        };
+        header: {
+            color: string;
+        };
         productCard: {
             bacgroundColor: string;
         };
     }
     interface PaletteOptions {
+        errors: {
+            color: string;
+        };
+        header: {
+            color: string;
+        };
         productCard: {
             bacgroundColor: string;
         };
@@ -29,15 +41,21 @@ const theme = createTheme({
             main: "#dc004e", // Secondary brand color
             contrastText: "#ffffff", // Text color on secondary
         },
+        errors: {
+            color: 'rgb(174 74 71)',
+        },
         background: {
             default: "rgb(236, 236, 237)", // Page background
             paper: "#f4f6f8",
             header: "#1D3354", // Surface background (e.g., cards)
         },
         text: {
-            primary: "#ffffff", // Main text color
-            secondary: "#555555", // Secondary text color
+            primary: "#555555", // Main text color
+            secondary: "#ffffff", // Secondary text color
             disabled: "rgba(0, 0, 0, 0.38)", // Disabled text color
+        },
+        header: {
+            color: " #ffffff",
         },
         productCard: {
             bacgroundColor: "rgb(255, 255, 255)",

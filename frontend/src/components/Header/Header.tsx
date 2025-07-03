@@ -48,7 +48,7 @@ const Header = () => {
                                     <Typography
                                         variant="h4"
                                         component="div"
-                                        color="text.primary"
+                                        color="header.color"
                                     >
                                         ScandiTech
                                     </Typography>
