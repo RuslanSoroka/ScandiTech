@@ -53,7 +53,6 @@ const styles = {
     }),
     title: (theme: Theme) => ({
         fontSize: "2rem",
-        color: theme.palette.text.secondary,
     }),
     addToCart: (theme: Theme) => ({
         display: "flex",

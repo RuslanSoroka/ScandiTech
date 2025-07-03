@@ -3,24 +3,16 @@ import { Link, useParams } from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import styles from "./ProductScreen.styles";
 import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
+import BackButton from "../../components/BackButton";
 
 const ProductScreen = () => {
     const { id: ProducId } = useParams();
-    const {data: product} = useGetProductByIdQuery(ProducId ?? '')
+    const { data: product } = useGetProductByIdQuery(ProducId ?? "");
 
     return (
         product && (
             <Box>
-                <Button
-                    sx={{
-                        backgroundColor: "lightgray",
-                        "> *": { color: "black", textDecoration: "none" },
-                        marginBlock: "1rem",
-                    }}
-                    variant="contained"
-                >
-                    <Link to="/">Go Back</Link>
-                </Button>
+                <BackButton link="/" />
                 <Box sx={styles.productScreen}>
                     <Box sx={styles.imageContainer}>
                         <img src={product.image} alt={product.name} />

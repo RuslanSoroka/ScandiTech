@@ -24,7 +24,6 @@ const HomeScreen = () => {
                     },
                 })}
                 variant="h1"
-                color="text.secondary"
             >
                 Products
             </Typography>

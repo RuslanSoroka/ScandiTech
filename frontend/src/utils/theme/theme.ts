@@ -1,4 +1,5 @@
 import { createTheme, Breakpoints } from "@mui/material/styles";
+import { light } from "@mui/material/styles/createPalette";
 
 declare module "@mui/material/styles" {
     interface TypeBackground {
@@ -17,6 +18,9 @@ declare module "@mui/material/styles" {
         productCard: {
             bacgroundColor: string;
         };
+        backButton: {
+            color: string;
+        };
     }
     interface PaletteOptions {
         errors: {
@@ -27,6 +31,9 @@ declare module "@mui/material/styles" {
         };
         productCard: {
             bacgroundColor: string;
+        };
+        backButton: {
+            color: string;
         };
     }
 }
@@ -42,7 +49,7 @@ const theme = createTheme({
             contrastText: "#ffffff", // Text color on secondary
         },
         errors: {
-            color: 'rgb(174 74 71)',
+            color: "rgb(174 74 71)",
         },
         background: {
             default: "rgb(236, 236, 237)", // Page background
@@ -59,6 +66,9 @@ const theme = createTheme({
         },
         productCard: {
             bacgroundColor: "rgb(255, 255, 255)",
+        },
+        backButton: {
+            color: "lightgray",
         },
         divider: "rgba(0, 0, 0, 0.12)", // Divider color
     },
