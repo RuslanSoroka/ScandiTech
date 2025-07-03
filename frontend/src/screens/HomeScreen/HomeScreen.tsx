@@ -1,7 +1,6 @@
 import { lazy, memo, Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { useGetAllProductsQuery } from "../../redux/apiSlices/productsSlice";
-import HomeScreenSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
 import ProductSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
 
 const Product = lazy(() => import("../../components/Product"));
