@@ -1,21 +1,40 @@
-import { Box, Button, Typography, Paper } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import {Box, Button, Typography, Paper} from "@mui/material";
+import {Link, useParams} from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import styles from "./ProductScreen.styles";
-import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
+import {useGetProductByIdQuery} from "../../redux/apiSlices/productsSlice";
 import BackButton from "../../components/BackButton";
+import {addCartItem} from "../../redux/slices/cartSlice";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
+import {ICartItem} from "../../models";
+import ErrorComponent from "../../components/ErrorComponent";
 
 const ProductScreen = () => {
-    const { id: ProducId } = useParams();
-    const { data: product } = useGetProductByIdQuery(ProducId ?? "");
+    const {id: producId} = useParams();
+    const {data: product, isError: isErrorGetProduct} = useGetProductByIdQuery(producId ?? "");
+    const dispatch = useAppDispatch();
+
+    const addToCart = (
+        id: string,
+        name: string,
+        price: number,
+        image: string
+    ): void => {
+        const cartItem = {id, name, price, image, quantity: 1};
+        dispatch(addCartItem(cartItem));
+    };
+
+    if (isErrorGetProduct) {
+        return <ErrorComponent />;
+    }
 
     return (
         product && (
             <Box>
-                <BackButton link="/" />
+                <BackButton link="/"/>
                 <Box sx={styles.productScreen}>
                     <Box sx={styles.imageContainer}>
-                        <img src={product.image} alt={product.name} />
+                        <img src={product.image} alt={product.name}/>
                     </Box>
                     <Box sx={styles.productInfo}>
                         <Typography sx={styles.title} variant="h1">
@@ -49,6 +68,14 @@ const ProductScreen = () => {
                         </Box>
                         <Box sx={styles.item}>
                             <Button
+                                onClick={() =>
+                                    addToCart(
+                                        product._id,
+                                        product.name,
+                                        product.price,
+                                        product.image
+                                    )
+                                }
                                 variant="contained"
                                 disabled={product.countInStock === 0}
                             >

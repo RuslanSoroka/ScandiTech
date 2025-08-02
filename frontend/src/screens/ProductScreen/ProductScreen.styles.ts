@@ -40,7 +40,7 @@ const styles = {
             paddingBottom: "1rem",
             display: "block",
         },
-        "& > *:not(:first-child)": {
+        "& > *:not(:first-of-type)": {
             paddingTop: "1rem",
         },
         "@media (max-width: 1024px)": {
