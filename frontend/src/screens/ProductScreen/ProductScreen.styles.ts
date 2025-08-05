@@ -40,7 +40,7 @@ const styles = {
             paddingBottom: "1rem",
             display: "block",
         },
-        "& > *:not(:first-child)": {
+        "& > *:not(:first-of-type)": {
             paddingTop: "1rem",
         },
         "@media (max-width: 1024px)": {
@@ -53,7 +53,6 @@ const styles = {
     }),
     title: (theme: Theme) => ({
         fontSize: "2rem",
-        color: theme.palette.text.secondary,
     }),
     addToCart: (theme: Theme) => ({
         display: "flex",

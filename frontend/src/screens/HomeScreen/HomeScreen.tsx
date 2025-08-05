@@ -2,12 +2,17 @@ import { lazy, memo, Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { useGetAllProductsQuery } from "../../redux/apiSlices/productsSlice";
 import ProductSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
+import ErrorComponent from "../../components/ErrorComponent";
 
 const Product = lazy(() => import("../../components/Product"));
 const MemoizedProduct = memo(Product);
 
 const HomeScreen = () => {
-    const { data: products} = useGetAllProductsQuery();
+    const { data: products, isError } = useGetAllProductsQuery();
+
+    if (isError) {
+        return <ErrorComponent />;
+    }
 
     return (
         <Box>
@@ -19,7 +24,6 @@ const HomeScreen = () => {
                     },
                 })}
                 variant="h1"
-                color="text.secondary"
             >
                 Products
             </Typography>

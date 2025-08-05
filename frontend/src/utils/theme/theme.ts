@@ -1,20 +1,47 @@
-import { createTheme, Breakpoints } from "@mui/material/styles";
+import {createTheme} from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
     interface TypeBackground {
         header?: string;
     }
+
     interface BreakpointOverrides {
         xxl: true;
     }
+
     interface Palette {
+        errors: {
+            color: string;
+        };
+        header: {
+            color: string;
+        };
         productCard: {
             bacgroundColor: string;
         };
+        backButton: {
+            color: string;
+        };
+        hover: {
+            color: string,
+        };
     }
+
     interface PaletteOptions {
+        errors: {
+            color: string;
+        };
+        header: {
+            color: string;
+        };
         productCard: {
             bacgroundColor: string;
+        };
+        backButton: {
+            color: string;
+        };
+        hover: {
+            color: string,
         };
     }
 }
@@ -22,30 +49,42 @@ declare module "@mui/material/styles" {
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#1D3354", // Main brand color
-            contrastText: "#ffffff", // Text color on primary
+            main: "#1D3354",
+            contrastText: "#ffffff",
         },
         secondary: {
-            main: "#dc004e", // Secondary brand color
-            contrastText: "#ffffff", // Text color on secondary
+            main: "#dc004e",
+            contrastText: "#ffffff",
+        },
+        errors: {
+            color: "rgb(174 74 71)",
         },
         background: {
-            default: "rgb(236, 236, 237)", // Page background
+            default: "rgb(236, 236, 237)",
             paper: "#f4f6f8",
-            header: "#1D3354", // Surface background (e.g., cards)
+            header: "#1D3354",
         },
         text: {
-            primary: "#ffffff", // Main text color
-            secondary: "#555555", // Secondary text color
-            disabled: "rgba(0, 0, 0, 0.38)", // Disabled text color
+            primary: "#555555",
+            secondary: "#ffffff",
+            disabled: "rgba(0, 0, 0, 0.38)",
+        },
+        header: {
+            color: " #ffffff",
+        },
+        hover: {
+            color: '#d4d4d4',
         },
         productCard: {
             bacgroundColor: "rgb(255, 255, 255)",
         },
-        divider: "rgba(0, 0, 0, 0.12)", // Divider color
+        backButton: {
+            color: "lightgray",
+        },
+        divider: "rgba(0, 0, 0, 0.12)",
     },
     typography: {
-        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Default font family
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
         h1: {
             fontSize: "3rem",
             fontWeight: 500,
@@ -99,7 +138,7 @@ const theme = createTheme({
         button: {
             fontSize: "0.875rem",
             fontWeight: 500,
-            textTransform: "uppercase", // Standard for buttons
+            textTransform: "uppercase",
         },
         caption: {
             fontSize: "0.75rem",
@@ -109,13 +148,13 @@ const theme = createTheme({
         overline: {
             fontSize: "0.75rem",
             fontWeight: 400,
-            textTransform: "uppercase", // Often used for small labels
+            textTransform: "uppercase",
             lineHeight: 2.66,
         },
     },
-    spacing: 8, // Default spacing factor (use multiples for padding/margin, e.g., 2 => 16px)
+    spacing: 8, // 2 => 16px
     shape: {
-        borderRadius: 8, // Rounded corners for buttons, cards, etc.
+        borderRadius: 3,
     },
     breakpoints: {
         values: {
@@ -132,6 +171,13 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     color: "#555555",
+                },
+            },
+        },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    textDecoration: 'none',
                 },
             },
         },

@@ -4,22 +4,21 @@ import {
     Toolbar,
     Typography,
     Box,
-    Button,
     Stack,
-    TextField,
     IconButton,
-    useTheme,
     MenuItem,
     Menu,
     Container,
+    Link, Badge
 } from "@mui/material";
-import { FaShoppingCart, FaUser } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
+import {FaShoppingCart, FaUser} from "react-icons/fa";
+import {GiHamburgerMenu} from "react-icons/gi";
 import styles from "./Header.styles";
-import { Link } from "react-router-dom";
+import {Link as RouterLink} from "react-router-dom";
+import {useAppSelector} from "../../hooks/reduxHooks";
 
 const Header = () => {
-    const theme = useTheme();
+    const cartItemCount = useAppSelector(state => state.cart.cartItems.length)
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -44,45 +43,24 @@ const Header = () => {
                             gap={3}
                         >
                             <Box flex={1}>
-                                <Link to="/">
+                                <Link component={RouterLink} to="/">
                                     <Typography
                                         variant="h4"
                                         component="div"
-                                        color="text.primary"
+                                        color="header.color"
                                     >
                                         ScandiTech
                                     </Typography>
                                 </Link>
                             </Box>
                             <Box display={"flex"} alignContent={"center"}>
-                                <Stack
-                                    direction="row"
-                                    gap={1}
-                                    alignItems={"center"}
-                                    justifyContent={"flex-end"}
-                                >
-                                    <TextField
-                                        variant="outlined"
-                                        id="outlined-search"
-                                        type="search"
-                                        autoComplete="off"
-                                        sx={styles.input}
-                                    />
-                                    <Button
-                                        sx={{ height: 40 }}
-                                        color="success"
-                                        variant="outlined"
-                                    >
-                                        Search
-                                    </Button>
-                                </Stack>
                                 <Box sx={styles.humburgerWrapper}>
                                     <IconButton
                                         sx={styles.iconButton}
                                         aria-label="menu"
                                         onClick={handleClick}
                                     >
-                                        <GiHamburgerMenu />
+                                        <GiHamburgerMenu/>
                                     </IconButton>
                                     <Menu
                                         id="basic-menu"
@@ -94,13 +72,13 @@ const Header = () => {
                                         }}
                                     >
                                         <MenuItem
-                                            sx={{ color: "#555555" }}
+                                            sx={{color: "#555555"}}
                                             onClick={handleClose}
                                         >
                                             Cart
                                         </MenuItem>
                                         <MenuItem
-                                            sx={{ color: "#555555" }}
+                                            sx={{color: "#555555"}}
                                             onClick={handleClose}
                                         >
                                             Sign In
@@ -115,16 +93,24 @@ const Header = () => {
                                     marginLeft={2}
                                 >
                                     <IconButton
-                                        aria-label="add to shopping cart"
+                                        to={'/cart'}
+                                        aria-label="shopping cart"
                                         sx={styles.iconButton}
+                                        component={RouterLink}
+                                        size={"large"}
                                     >
-                                        <FaShoppingCart /> Cart
+
+                                        <Badge badgeContent={cartItemCount} color="secondary">
+                                            <FaShoppingCart size={25}/>
+                                        </Badge>
                                     </IconButton>
                                     <IconButton
+                                        to={''}
                                         sx={styles.iconButton}
                                         aria-label="sign in"
+                                        component={RouterLink}
                                     >
-                                        <FaUser /> Sign In
+                                        <FaUser size={25}/>
                                     </IconButton>
                                 </Stack>
                             </Box>

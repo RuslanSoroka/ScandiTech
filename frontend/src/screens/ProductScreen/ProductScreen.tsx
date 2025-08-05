@@ -1,29 +1,40 @@
-import { Box, Button, Typography, Paper } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import {Box, Button, Typography, Paper} from "@mui/material";
+import {useParams} from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import styles from "./ProductScreen.styles";
-import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
+import {useGetProductByIdQuery} from "../../redux/apiSlices/productsSlice";
+import BackButton from "../../components/BackButton";
+import {addCartItem} from "../../redux/slices/cartSlice";
+import {useAppDispatch} from "../../hooks/reduxHooks";
+import ErrorComponent from "../../components/ErrorComponent";
 
 const ProductScreen = () => {
-    const { id: ProducId } = useParams();
-    const {data: product} = useGetProductByIdQuery(ProducId ?? '')
+    const {id: producId} = useParams();
+    const {data: product, isError: isErrorGetProduct} = useGetProductByIdQuery(producId ?? "");
+    const dispatch = useAppDispatch();
+
+    const addToCart = (
+        _id: string,
+        name: string,
+        price: number,
+        image: string,
+        countInStock: number,
+    ): void => {
+        const cartItem = {_id, name, price, image, countInStock, quantity: 1};
+        dispatch(addCartItem(cartItem));
+    };
+
+    if (isErrorGetProduct) {
+        return <ErrorComponent />;
+    }
 
     return (
         product && (
             <Box>
-                <Button
-                    sx={{
-                        backgroundColor: "lightgray",
-                        "> *": { color: "black", textDecoration: "none" },
-                        marginBlock: "1rem",
-                    }}
-                    variant="contained"
-                >
-                    <Link to="/">Go Back</Link>
-                </Button>
+                <BackButton link="/"/>
                 <Box sx={styles.productScreen}>
                     <Box sx={styles.imageContainer}>
-                        <img src={product.image} alt={product.name} />
+                        <img src={product.image} alt={product.name}/>
                     </Box>
                     <Box sx={styles.productInfo}>
                         <Typography sx={styles.title} variant="h1">
@@ -57,6 +68,15 @@ const ProductScreen = () => {
                         </Box>
                         <Box sx={styles.item}>
                             <Button
+                                onClick={() =>
+                                    addToCart(
+                                        product._id,
+                                        product.name,
+                                        product.price,
+                                        product.image,
+                                        product.countInStock,
+                                    )
+                                }
                                 variant="contained"
                                 disabled={product.countInStock === 0}
                             >

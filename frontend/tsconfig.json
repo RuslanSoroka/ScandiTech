@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "target": "es5",                             // Set the JavaScript language version to which TypeScript should compile (default is ES3).
+      "target": "es2015",                             // Set the JavaScript language version to which TypeScript should compile (default is ES3).
       "lib": ["dom", "dom.iterable", "esnext"],    // Include the necessary libraries.
       "allowJs": true,                             // Allow JavaScript files to be compiled.
       "skipLibCheck": true,                        // Skip checking of declaration files for libraries.
