@@ -1,12 +1,11 @@
 import {Box, Button, Typography, Paper} from "@mui/material";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Rating from "../../components/Rating/Rating";
 import styles from "./ProductScreen.styles";
 import {useGetProductByIdQuery} from "../../redux/apiSlices/productsSlice";
 import BackButton from "../../components/BackButton";
 import {addCartItem} from "../../redux/slices/cartSlice";
 import {useAppDispatch} from "../../hooks/reduxHooks";
-import {ICartItem} from "../../models";
 import ErrorComponent from "../../components/ErrorComponent";
 
 const ProductScreen = () => {

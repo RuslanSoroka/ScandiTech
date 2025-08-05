@@ -37,7 +37,7 @@ const cartSlice = createSlice({
                 state.cartItems.push(newItem);
             }
 
-            state.price = state.cartItems.reduce((acc: number, item: ICartItem) => acc += item.price * item.quantity, 0);
+            state.price = state.cartItems.reduce((acc: number, item: ICartItem) => acc + item.price * item.quantity, 0);
 
             state.shippingPrice = state.price >= 100 ? 0 : 15;
 
@@ -56,7 +56,7 @@ const cartSlice = createSlice({
             } else {
                 return
             }
-            state.price = state.cartItems.reduce((acc: number, item: ICartItem) => acc += item.price * item.quantity, 0);
+            state.price = state.cartItems.reduce((acc: number, item: ICartItem) => acc + item.price * item.quantity, 0);
 
             state.shippingPrice = state.price >= 100 ? 0 : 15;
 

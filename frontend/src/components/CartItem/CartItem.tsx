@@ -22,7 +22,7 @@ const CartItem = ({key, itemData}: CartItemProps) => {
         console.log(selectedQuantity)
     }
     return (
-        <Card key={key} sx={styles.cartItemBox}>
+        <Card key={key} sx={styles.cartItem}>
             <CardMedia sx={styles.itemImage} component="img" src={image} alt={`It is ${name} in your cart`} width={50}
                        height={50}/>
             <CardContent sx={styles.contentBox}>

@@ -1,5 +1,4 @@
-import { createTheme, Breakpoints } from "@mui/material/styles";
-import { light } from "@mui/material/styles/createPalette";
+import { createTheme} from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
     interface TypeBackground {
