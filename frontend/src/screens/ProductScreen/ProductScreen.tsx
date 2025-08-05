@@ -5,7 +5,7 @@ import styles from "./ProductScreen.styles";
 import {useGetProductByIdQuery} from "../../redux/apiSlices/productsSlice";
 import BackButton from "../../components/BackButton";
 import {addCartItem} from "../../redux/slices/cartSlice";
-import {useAppDispatch, useAppSelector} from "../../hooks/reduxHooks";
+import {useAppDispatch} from "../../hooks/reduxHooks";
 import {ICartItem} from "../../models";
 import ErrorComponent from "../../components/ErrorComponent";
 
@@ -15,12 +15,13 @@ const ProductScreen = () => {
     const dispatch = useAppDispatch();
 
     const addToCart = (
-        id: string,
+        _id: string,
         name: string,
         price: number,
-        image: string
+        image: string,
+        countInStock: number,
     ): void => {
-        const cartItem = {id, name, price, image, quantity: 1};
+        const cartItem = {_id, name, price, image, countInStock, quantity: 1};
         dispatch(addCartItem(cartItem));
     };
 
@@ -73,7 +74,8 @@ const ProductScreen = () => {
                                         product._id,
                                         product.name,
                                         product.price,
-                                        product.image
+                                        product.image,
+                                        product.countInStock,
                                     )
                                 }
                                 variant="contained"

@@ -1,3 +1,4 @@
+
 export interface IProduct {
     _id: string
     name: string
@@ -9,12 +10,13 @@ export interface IProduct {
     countInStock: number
     rating: number
     numReviews: number
-  }
+}
 
 export interface ICartItem {
-    id: string;
+    _id: string;
     name: string;
     price: number;
     image: string;
+    countInStock: number;
     quantity: number;
 }
