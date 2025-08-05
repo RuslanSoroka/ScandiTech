@@ -1,12 +1,14 @@
-import { createTheme} from "@mui/material/styles";
+import {createTheme} from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
     interface TypeBackground {
         header?: string;
     }
+
     interface BreakpointOverrides {
         xxl: true;
     }
+
     interface Palette {
         errors: {
             color: string;
@@ -20,7 +22,11 @@ declare module "@mui/material/styles" {
         backButton: {
             color: string;
         };
+        hover: {
+            color: string,
+        };
     }
+
     interface PaletteOptions {
         errors: {
             color: string;
@@ -33,6 +39,9 @@ declare module "@mui/material/styles" {
         };
         backButton: {
             color: string;
+        };
+        hover: {
+            color: string,
         };
     }
 }
@@ -62,6 +71,9 @@ const theme = createTheme({
         },
         header: {
             color: " #ffffff",
+        },
+        hover: {
+            color: '#d4d4d4',
         },
         productCard: {
             bacgroundColor: "rgb(255, 255, 255)",
@@ -159,6 +171,13 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     color: "#555555",
+                },
+            },
+        },
+        MuiLink: {
+            styleOverrides: {
+                root: {
+                    textDecoration: 'none',
                 },
             },
         },

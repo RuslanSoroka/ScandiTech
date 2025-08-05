@@ -22,9 +22,9 @@ const CartItem = ({key, itemData}: CartItemProps) => {
         console.log(selectedQuantity)
     }
 
-   const hanleDeleteItem = (id: string)=> {
+    const hanleDeleteItem = (id: string) => {
         dispatch(deleteItem(id))
-   }
+    }
     return (
         <Card key={key} sx={styles.cartItem}>
             <CardMedia sx={styles.itemImage} component="img" src={image} alt={`It is ${name} in your cart`} width={50}
@@ -42,7 +42,8 @@ const CartItem = ({key, itemData}: CartItemProps) => {
                                                                                            value={option + 1}>{option + 1}</MenuItem>)}
 
                     </Select>
-                    <IconButton sx={styles.deleteButton} onClick={()=>hanleDeleteItem(_id)}>
+                    <IconButton sx={styles.deleteButton} aria-label='delete cart item'
+                                onClick={() => hanleDeleteItem(_id)}>
                         <FaTrash/>
                     </IconButton>
                 </Box>

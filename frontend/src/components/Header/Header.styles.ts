@@ -1,4 +1,4 @@
-import { Theme } from "@mui/material";
+import {Theme} from "@mui/material";
 
 const styles = {
     toolbar: {
@@ -28,13 +28,13 @@ const styles = {
             md: "flex",
         },
     },
-    iconButton: {
+    iconButton:(theme: Theme)=>( {
         color: "white",
         fontSize: "1.3rem",
         "&:hover": {
-            color: "black",
+            color: theme.palette.hover.color,
         },
-    },
+    }),
 };
 
 export default styles;
