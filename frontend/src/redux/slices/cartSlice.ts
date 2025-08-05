@@ -1,13 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ICartItem} from "../../models";
-
-interface ICartState {
-    cartItems: ICartItem[];
-    price: number;
-    shippingPrice: number,
-    taxPrice: number,
-    totalPrice: number,
-}
+import {ICartItem, ICartState} from "../../models";
+import {updateCart} from "../../utils/helpers/updateCart";
 
 export interface IUpdateQuantity {
     _id: string;
@@ -36,16 +29,7 @@ const cartSlice = createSlice({
             } else {
                 state.cartItems.push(newItem);
             }
-
-            state.price = state.cartItems.reduce((acc: number, item: ICartItem) => acc + item.price * item.quantity, 0);
-
-            state.shippingPrice = state.price >= 100 ? 0 : 15;
-
-            state.taxPrice = 0.15 * state.price;
-
-            const TOTAL_AMMOUNT = (state.price + state.shippingPrice + state.taxPrice).toFixed(2)
-            state.totalPrice = Number(TOTAL_AMMOUNT);
-            localStorage.setItem("cart", JSON.stringify(state));
+            updateCart(state)
         },
         updateQuantity: (state, action: PayloadAction<IUpdateQuantity>) => {
             const {_id, quantity} = action.payload;
@@ -56,19 +40,16 @@ const cartSlice = createSlice({
             } else {
                 return
             }
-            state.price = state.cartItems.reduce((acc: number, item: ICartItem) => acc + item.price * item.quantity, 0);
-
-            state.shippingPrice = state.price >= 100 ? 0 : 15;
-
-            state.taxPrice = 0.15 * state.price;
-
-            const TOTAL_AMMOUNT = (state.price + state.shippingPrice + state.taxPrice).toFixed(2)
-            state.totalPrice = Number(TOTAL_AMMOUNT);
-            localStorage.setItem("cart", JSON.stringify(state));
-        }
+            updateCart(state)
+        },
+        deleteItem: (state, action: PayloadAction<string>) => {
+            const deleteId = action.payload;
+            state.cartItems = state.cartItems.filter(item => item._id !== deleteId);
+            updateCart(state)
+        },
     },
 });
 
-export const {addCartItem, updateQuantity} = cartSlice.actions;
+export const {addCartItem, updateQuantity, deleteItem} = cartSlice.actions;
 
 export default cartSlice.reducer;

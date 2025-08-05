@@ -20,3 +20,11 @@ export interface ICartItem {
     countInStock: number;
     quantity: number;
 }
+
+export interface ICartState {
+    cartItems: ICartItem[];
+    price: number;
+    shippingPrice: number,
+    taxPrice: number,
+    totalPrice: number,
+}

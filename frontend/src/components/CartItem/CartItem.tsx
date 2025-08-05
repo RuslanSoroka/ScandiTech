@@ -3,7 +3,7 @@ import {Card, CardContent, CardMedia, MenuItem, Select, Typography, SelectChange
 import {styles} from "./CartItem.styles";
 import IconButton from '@mui/material/IconButton';
 import {FaTrash} from "react-icons/fa";
-import {updateQuantity} from "../../redux/slices/cartSlice";
+import {deleteItem, updateQuantity} from "../../redux/slices/cartSlice";
 import {useAppDispatch} from "../../hooks/reduxHooks";
 
 interface CartItemProps {
@@ -21,6 +21,10 @@ const CartItem = ({key, itemData}: CartItemProps) => {
         dispatch(updateQuantity({_id, quantity: selectedQuantity}))
         console.log(selectedQuantity)
     }
+
+   const hanleDeleteItem = (id: string)=> {
+        dispatch(deleteItem(id))
+   }
     return (
         <Card key={key} sx={styles.cartItem}>
             <CardMedia sx={styles.itemImage} component="img" src={image} alt={`It is ${name} in your cart`} width={50}
@@ -38,7 +42,7 @@ const CartItem = ({key, itemData}: CartItemProps) => {
                                                                                            value={option + 1}>{option + 1}</MenuItem>)}
 
                     </Select>
-                    <IconButton sx={styles.deleteButton}>
+                    <IconButton sx={styles.deleteButton} onClick={()=>hanleDeleteItem(_id)}>
                         <FaTrash/>
                     </IconButton>
                 </Box>
