@@ -3,11 +3,11 @@ import {Box, Typography} from "@mui/material";
 import Rating from "../Rating";
 import {IProduct} from "../../models";
 
-interface ProductDetailsProps {
+interface IProductDetailsProps {
     productDetails: IProduct,
 }
 
-const ProductDetails = ({productDetails}: ProductDetailsProps) => {
+const ProductDetails = ({productDetails}: IProductDetailsProps) => {
     return (
         <Box sx={styles.productInfo} component='article'>
             <Typography sx={styles.title} variant="h1">
