@@ -1,5 +1,4 @@
 import {Theme} from "@mui/material";
-import AddToCartWidget from "./AddToCartWidget";
 
 export const styles = {
     addToCartWidget: (theme: Theme) => ({
@@ -20,7 +19,7 @@ export const styles = {
             maxWidth: "100%",
         },
     }),
-    item: (theme: Theme) => ({
+    wrapperBox: (theme: Theme) => ({
         display: "flex",
         justifyContent: "space-between",
         padding: theme.spacing(3),

@@ -1,15 +1,21 @@
-import {Box, Button, Typography, Paper} from "@mui/material";
+import {Box} from "@mui/material";
 import {useParams} from "react-router-dom";
-import Rating from "../../components/Rating/Rating";
 import styles from "./ProductScreen.styles";
 import {useGetProductByIdQuery} from "../../redux/apiSlices/productsSlice";
 import BackButton from "../../components/BackButton";
-import {addCartItem} from "../../redux/slices/cartSlice";
-import {useAppDispatch} from "../../hooks/reduxHooks";
 import ErrorComponent from "../../components/ErrorComponent";
-import ProductDetails from "../../components/ProductDetails";
-import ProductImageGallery from "../../components/ProductImageGallery";
-import AddToCartWidget from "../../components/AddToCartWidget/AddToCartWidget";
+
+import {lazy, memo, Suspense} from "react";
+import ImageGallerySkeleton from "../../components/Skeleton/ProductScreenSleletons/ImageGallerySkeleton";
+import ProductDetailsSkeleton from "../../components/Skeleton/ProductScreenSleletons/ProductDetailsSkeleton";
+import AddToCartWidgetSkeleton from "../../components/Skeleton/ProductScreenSleletons/AddToCartWidgetSkeleton";
+
+const ProductDetails = lazy(() => import('../../components/ProductDetails'));
+const MemoizedProductDetails = memo(ProductDetails);
+const ProductImageGallery = lazy(() => import("../../components/ProductImageGallery"));
+const MemoizedProductImageGallery = memo(ProductImageGallery);
+const AddToCartWidget = lazy(() => import("../../components/AddToCartWidget/AddToCartWidget"));
+const MemoizedAddToCartWidget = memo(AddToCartWidget);
 
 const ProductScreen = () => {
     const {id: producId} = useParams();
@@ -21,12 +27,18 @@ const ProductScreen = () => {
 
     return (
         product && (
-            <Box>
+            <Box className='productScreen'>
                 <BackButton link="/"/>
-                <Box sx={styles.productScreen}>
-                    <ProductImageGallery src={product.image} productName={product.name}/>
-                    <ProductDetails productDetails={product}/>
-                    <AddToCartWidget productItem={product}/>
+                <Box sx={styles.productScreenContent}>
+                    <Suspense fallback={<ImageGallerySkeleton/>}>
+                        <MemoizedProductImageGallery src={product.image} productName={product.name}/>
+                    </Suspense>
+                    <Suspense fallback={<ProductDetailsSkeleton/>}>
+                        <MemoizedProductDetails productItem={product}/>
+                    </Suspense>
+                    <Suspense fallback={<AddToCartWidgetSkeleton/>}>
+                        <MemoizedAddToCartWidget productItem={product}/>
+                    </Suspense>
                 </Box>
             </Box>
         )

@@ -4,24 +4,24 @@ import Rating from "../Rating";
 import {IProduct} from "../../models";
 
 interface IProductDetailsProps {
-    productDetails: IProduct,
+    productItem: IProduct,
 }
 
-const ProductDetails = ({productDetails}: IProductDetailsProps) => {
+const ProductDetails = ({productItem}: IProductDetailsProps) => {
     return (
-        <Box sx={styles.productInfo} component='article'>
+        <Box sx={styles.productInfo} component='section'>
             <Typography sx={styles.title} variant="h1">
-                {productDetails.name}
+                {productItem.name}
             </Typography>
             <Rating
-                rating={productDetails.rating}
-                numReviews={productDetails?.numReviews}
+                rating={productItem.rating}
+                numReviews={productItem?.numReviews}
             />
             <Typography variant="subtitle2">
-                Price: ${productDetails?.price}
+                Price: ${productItem?.price}
             </Typography>
             <Typography variant="body1">
-                {productDetails.description}
+                {productItem.description}
             </Typography>
         </Box>
 

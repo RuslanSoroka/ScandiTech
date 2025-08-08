@@ -20,13 +20,13 @@ const AddToCartWidget = ({productItem}: AddToCartWidgetProps) => {
     };
     return (
         <Paper sx={styles.addToCartWidget}>
-            <Box sx={styles.item}>
+            <Box sx={styles.wrapperBox}>
                 <Typography variant="body1">Price:</Typography>
                 <Typography variant="body1">
                     ${productItem.price}
                 </Typography>
             </Box>
-            <Box sx={styles.item}>
+            <Box sx={styles.wrapperBox}>
                 <Typography variant="body1">Status:</Typography>
                 <Typography variant="body1">
                     {productItem.countInStock > 0
@@ -34,7 +34,7 @@ const AddToCartWidget = ({productItem}: AddToCartWidgetProps) => {
                         : "Out of stock"}
                 </Typography>
             </Box>
-            <Box sx={styles.item}>
+            <Box sx={styles.wrapperBox}>
                 <Button
                     onClick={() =>
                         handleAddToCart(

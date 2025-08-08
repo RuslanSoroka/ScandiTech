@@ -1,7 +1,7 @@
 import { Theme } from "@mui/material";
 
 const styles = {
-    productScreen: (theme: Theme) => ({
+    productScreenContent: (theme: Theme) => ({
         display: "flex",
         flexDirection: "row",
         alignItems: "flex-start",
