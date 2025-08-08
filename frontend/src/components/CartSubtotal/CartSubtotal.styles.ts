@@ -15,7 +15,6 @@ export const styles = {
         marginBottom: theme.spacing(3),
     }),
     button: {
-        textTransform: "capitalize",
         [theme.breakpoints.down("md")]: {
             width: '100%',
         }
