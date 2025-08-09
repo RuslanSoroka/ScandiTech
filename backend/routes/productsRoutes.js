@@ -1,6 +1,4 @@
 import expres from "express";
-import asyncHandler from "../middleware/asyncHandler.js";
-import Product from "../models/productSchema.js";
 import {
     getProducts,
     getProductsById,
