@@ -1,4 +1,4 @@
-import { colors, Theme } from "@mui/material";
+import { Theme } from "@mui/material";
 
 export const styles = {
 	button: (theme: Theme) => ({

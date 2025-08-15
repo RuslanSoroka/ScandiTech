@@ -1,4 +1,4 @@
-import { configureStore, Tuple } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./apiSlices/apiSlice";
 import cartSlice from "./slices/cartSlice";
 
