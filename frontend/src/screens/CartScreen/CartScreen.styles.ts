@@ -5,7 +5,7 @@ export const styles = {
 		display: "flex",
 		flexDirection: "column",
 		gap: theme.spacing(3),
-		paddingBlock: theme.spacing(2),
+		paddingY: theme.spacing(2),
 	}),
 	contentWrapper: (theme: Theme) => ({
 		display: "flex",
