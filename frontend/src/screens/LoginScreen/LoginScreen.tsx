@@ -4,19 +4,19 @@ import { Link as RouterLink } from "react-router";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import TextField from "@mui/material/TextField";
 import theme from "../../utils/theme/theme";
+import { yupResolver } from "@hookform/resolvers/yup";
+import LoginSchema from "../../utils/validationShemas/LoginSchema";
 
 interface IFormInput {
-  gmail: string;
+  email: string;
   password: string;
 }
 
 const LoginScreen = () => {
-  const { control, handleSubmit } = useForm<IFormInput>({
-    defaultValues: {
-      gmail: "",
-      password: ""
-    }
+  const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+    resolver: yupResolver(LoginSchema)
   });
+  console.log(errors);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
@@ -27,14 +27,15 @@ const LoginScreen = () => {
       <Box sx={styles.form} component="form" onSubmit={handleSubmit(onSubmit)}>
         <Box sx={styles.formContent}>
           <Controller
-            name="gmail"
+            name="email"
             control={control}
             render={({ field }) => (
               <TextField
                 {...field}
                 autoComplete="true"
-                label="Gmail"
-                helperText={false}
+                label="Email"
+                error={typeof errors.email?.message === "string"}
+                helperText={errors.email?.message}
                 sx={{
                   "& .MuiInputLabel-root": {
                     color: theme.palette.text.primary
@@ -51,7 +52,8 @@ const LoginScreen = () => {
                 {...field}
                 autoComplete="true"
                 label="Password"
-                helperText={false}
+                error={typeof errors.password?.message === "string"}
+                helperText={errors.password?.message}
                 sx={{
                   "& .MuiInputLabel-root": {
                     color: theme.palette.text.primary
