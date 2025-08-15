@@ -1,17 +1,20 @@
-import {styles} from "./ProductImageGallery.styles"
-import {Box} from "@mui/material";
+import { styles } from "./ProductImageGallery.styles";
+import { Box } from "@mui/material";
 
 interface ProductImageGalleryProps {
-    src: string,
-    productName: string,
+	src: string;
+	productName: string;
 }
 
-const ProductImageGallery = ({src, productName}: ProductImageGalleryProps) => {
-    return (
-        <Box sx={styles.wrapper}>
-            <Box component="img" src={src} alt={productName}/>
-        </Box>
-    );
+const ProductImageGallery = ({
+	src,
+	productName,
+}: ProductImageGalleryProps) => {
+	return (
+		<Box sx={styles.wrapper}>
+			<Box component="img" src={src} alt={productName} />
+		</Box>
+	);
 };
 
 export default ProductImageGallery;

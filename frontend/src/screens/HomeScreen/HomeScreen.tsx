@@ -8,45 +8,38 @@ const Product = lazy(() => import("../../components/Product"));
 const MemoizedProduct = memo(Product);
 
 const HomeScreen = () => {
-    const { data: products, isError } = useGetAllProductsQuery();
+	const { data: products, isError } = useGetAllProductsQuery();
 
-    if (isError) {
-        return <ErrorComponent />;
-    }
+	if (isError) {
+		return <ErrorComponent />;
+	}
 
-    return (
-        <Box>
-            <Typography
-                sx={(theme) => ({
-                    padding: {
-                        xs: theme.spacing(2),
-                        md: theme.spacing(3),
-                    },
-                })}
-                variant="h1"
-            >
-                Products
-            </Typography>
-            <Grid container spacing={2}>
-                {products?.map((product) => {
-                    return (
-                        <Grid
-                            xs={12}
-                            sm={6}
-                            md={4}
-                            lg={3}
-                            item
-                            key={product._id}
-                        >
-                            <Suspense fallback={<ProductSkeleton />}>
-                                <MemoizedProduct product={product} />
-                            </Suspense>
-                        </Grid>
-                    );
-                })}
-            </Grid>
-        </Box>
-    );
+	return (
+		<Box>
+			<Typography
+				sx={(theme) => ({
+					padding: {
+						xs: theme.spacing(2),
+						md: theme.spacing(3),
+					},
+				})}
+				variant="h1"
+			>
+				Products
+			</Typography>
+			<Grid container spacing={2}>
+				{products?.map((product) => {
+					return (
+						<Grid xs={12} sm={6} md={4} lg={3} item key={product._id}>
+							<Suspense fallback={<ProductSkeleton />}>
+								<MemoizedProduct product={product} />
+							</Suspense>
+						</Grid>
+					);
+				})}
+			</Grid>
+		</Box>
+	);
 };
 
 export default HomeScreen;
