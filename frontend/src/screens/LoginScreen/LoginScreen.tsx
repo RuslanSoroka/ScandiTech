@@ -16,7 +16,6 @@ const LoginScreen = () => {
   const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>({
     resolver: yupResolver(LoginSchema)
   });
-  console.log(errors);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);

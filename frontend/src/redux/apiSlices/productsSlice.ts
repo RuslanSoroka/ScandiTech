@@ -1,4 +1,4 @@
-import { apiSlice } from "../apiSlices/apiSlice";
+import { apiSlice } from "./apiSlice";
 import { IProduct } from "../../models";
 import { PRODUCTS_URL } from "../../utils/constants";
 
