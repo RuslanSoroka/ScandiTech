@@ -6,6 +6,13 @@ import TextField from "@mui/material/TextField";
 import theme from "../../utils/theme/theme";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoginSchema from "../../utils/validationShemas/LoginSchema";
+import { setCredentials } from "../../redux/slices/authSlice";
+import { useLoginMutation } from "../../redux/apiSlices/usersApiSlice";
+import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppDispatch } from "../../hooks/reduxHooks";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { IUserInfo } from "../../models";
 
 interface IFormInput {
   email: string;
@@ -13,12 +20,28 @@ interface IFormInput {
 }
 
 const LoginScreen = () => {
+  const { userInfo } = useAppSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [postUserInfo, { isLoading: isLoadingPostInfo }] = useLoginMutation();
   const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>({
     resolver: yupResolver(LoginSchema)
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [userInfo]);
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data: IUserInfo) => {
+    const { email, password } = data;
+    try {
+      const res = await postUserInfo({ email, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+    } catch (e) {
+
+    }
   };
   return (
     <Box sx={styles.loginScreen}>

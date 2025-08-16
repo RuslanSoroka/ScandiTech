@@ -27,3 +27,8 @@ export interface ICartState {
 	taxPrice: number;
 	totalPrice: number;
 }
+
+export interface IUserInfo {
+	email: string,
+	password: string
+}

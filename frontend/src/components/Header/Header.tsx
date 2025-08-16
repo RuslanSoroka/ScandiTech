@@ -20,6 +20,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 
 const Header = () => {
 	const cartItemCount = useAppSelector((state) => state.cart.cartItems.length);
+	const { userInfo } = useAppSelector((state) => state.auth);
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -95,7 +96,7 @@ const Header = () => {
 										</Badge>
 									</IconButton>
 									<IconButton
-										to={""}
+										to={!userInfo ? "/login" : "/"}
 										sx={styles.iconButton}
 										aria-label="sign in"
 										component={RouterLink}

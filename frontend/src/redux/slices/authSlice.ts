@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {IUserInfo} from "../../models";
 
-interface IUserInfo {
-	gmail: string,
-	password: string
-}
 
 interface IAuthState {
 	userInfo: IUserInfo | null;
