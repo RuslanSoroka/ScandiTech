@@ -13,20 +13,44 @@ import {
 } from "@mui/material";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import styles from "./Header.styles";
-import { Link as RouterLink } from "react-router-dom";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
+import { useLogoutMutation } from "../../redux/apiSlices/usersApiSlice";
+import { logout } from "../../redux/slices/authSlice";
 import UserAvatar from "../UserAvatar";
+import { isApiError } from "../../utils/helpers/typeGuards";
+import toast from "react-hot-toast";
 
 const Header = () => {
 	const cartItemCount = useAppSelector((state) => state.cart.cartItems.length);
 	const { userInfo } = useAppSelector((state) => state.auth);
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+
+	const [logoutApi] = useLogoutMutation();
 
 	const [hamburgerEl, setHamburgerEl] = React.useState<null | HTMLElement>(null);
 	const open = !!hamburgerEl;
+
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setHamburgerEl(event.currentTarget);
 	};
 	const handleClose = () => {
+		setHamburgerEl(null);
+	};
+
+	const handleLogout = async () => {
+		try {
+			await logoutApi({}).unwrap();
+			dispatch(logout());
+			navigate("/login");
+		} catch (error) {
+			if (isApiError(error)) {
+				toast.error(error.data.message as string);
+			} else {
+				toast.error("Something went wrong");
+			}
+		}
 		setHamburgerEl(null);
 	};
 
@@ -40,7 +64,7 @@ const Header = () => {
 
 						>
 							<Box sx={styles.logo}>
-								<Link component={RouterLink} to="/" aria-label='Go to homepage'>
+								<Link component={RouterLink} to="/" aria-label="Go to homepage">
 									<Typography variant="h4" component="div">
 										ScandiTech
 									</Typography>
@@ -82,7 +106,7 @@ const Header = () => {
 												<MenuItem onClick={handleClose}>
 													Profile
 												</MenuItem>
-												<MenuItem onClick={handleClose}>
+												<MenuItem onClick={handleLogout}>
 													Logout
 												</MenuItem>
 											</Menu>

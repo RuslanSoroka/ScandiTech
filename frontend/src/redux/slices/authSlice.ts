@@ -8,7 +8,6 @@ interface IAuthState {
 
 const initialState: IAuthState = {
 	userInfo: localStorage.getItem("userInfo") !== null ? JSON.parse(localStorage.getItem("userInfo")!) : null,
-
 };
 
 const authSlice = createSlice({
@@ -19,8 +18,12 @@ const authSlice = createSlice({
 			state.userInfo = action.payload;
 			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
 		},
+		logout: (state)=> {
+			state.userInfo = null;
+			localStorage.removeItem('userInfo')
+		},
 	},
 });
 
-export const { setCredentials } = authSlice.actions;
+export const { setCredentials, logout } = authSlice.actions;
 export default authSlice.reducer;
