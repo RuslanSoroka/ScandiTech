@@ -6,28 +6,32 @@ const styles = {
 			padding: 0,
 		},
 	},
-	input: {
-		height: "40px",
-		justifyContent: "center",
-		width: {
-			xs: "50%",
-			sm: "75%",
-			md: "100%",
+	contentWrapper: (theme: Theme) => ({
+		display: "flex",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		width: "100%",
+		marginBlock: theme.spacing(1),
+		gap: theme.spacing(3),
+	}),
+	logo: (theme: Theme) => ({
+		"& div": {
+			color: theme.palette.header,
 		},
-		"& .MuiOutlinedInput-root": {
-			height: "100%",
-		},
+	}),
+	menuWrapper: {
+		display: "flex",
+		alignContent: "center",
 	},
-	humburgerWrapper: {
-		display: { xs: "block", md: "none" },
-	},
-	menu: {
+	menu: (theme: Theme) => ({
+		display: "flex",
+		flexDirection: "row",
+		gap: theme.spacing(1),
+		alignItems: "center",
+		marginLeft: theme.spacing(1),
 		"> *": { color: "white" },
-		display: {
-			xs: "none",
-			md: "flex",
-		},
-	},
+	}),
 	iconButton: (theme: Theme) => ({
 		color: "white",
 		fontSize: "1.3rem",

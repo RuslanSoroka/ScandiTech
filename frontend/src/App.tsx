@@ -2,6 +2,7 @@ import Header from "./components/Header/Header";
 import { Stack, Container, Box } from "@mui/material";
 import Footer from "./components/Footer/Footer";
 import { Outlet } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 				</Container>
 			</Box>
 			<Footer />
+			<Toaster />
 		</Stack>
 	);
 };

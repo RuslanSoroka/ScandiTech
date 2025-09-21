@@ -11,7 +11,7 @@ const ProductImageGallery = ({
 	productName,
 }: ProductImageGalleryProps) => {
 	return (
-		<Box sx={styles.wrapper}>
+		<Box sx={styles.img}>
 			<Box component="img" src={src} alt={productName} />
 		</Box>
 	);

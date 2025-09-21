@@ -1,2 +1,2 @@
-import ProductSkeleton from "./ProductSkeleton";
-export default ProductSkeleton;
+import HomeScreenSkeletonc from "./HomeScreenSkeleton";
+export default HomeScreenSkeletonc;

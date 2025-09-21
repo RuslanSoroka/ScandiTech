@@ -6,20 +6,12 @@ export const styles = {
 		flexDirection: "column",
 		border: `1px solid ${theme.palette.divider}`,
 		borderRadius: "5px",
-		maxWidth: "20rem",
 		width: "100%",
 		"& > *:not(:last-child)": {
 			borderBottom: `2px solid ${theme.palette.divider}`,
-		},
-		[theme.breakpoints.down("lg")]: {
-			gridColumn: "2 / 3",
-		},
-		[theme.breakpoints.down("md")]: {
-			gridColumn: "1 / 2",
-			maxWidth: "100%",
-		},
+		}
 	}),
-	wrapperBox: (theme: Theme) => ({
+	flexWrapper: (theme: Theme) => ({
 		display: "flex",
 		justifyContent: "space-between",
 		padding: theme.spacing(3),

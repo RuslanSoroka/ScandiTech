@@ -18,17 +18,17 @@ const AddToCartWidget = ({ productItem }: AddToCartWidgetProps) => {
 	};
 	return (
 		<Paper sx={styles.addToCartWidget}>
-			<Box sx={styles.wrapperBox}>
+			<Box sx={styles.flexWrapper}>
 				<Typography variant="body1">Price:</Typography>
 				<Typography variant="body1">${productItem.price}</Typography>
 			</Box>
-			<Box sx={styles.wrapperBox}>
+			<Box sx={styles.flexWrapper}>
 				<Typography variant="body1">Status:</Typography>
 				<Typography variant="body1">
 					{productItem.countInStock > 0 ? "In the stock" : "Out of stock"}
 				</Typography>
 			</Box>
-			<Box sx={styles.wrapperBox}>
+			<Box sx={styles.flexWrapper}>
 				<Button
 					onClick={() =>
 						handleAddToCart({

@@ -2,7 +2,7 @@ import { Box, Skeleton } from "@mui/material";
 
 const ImageGallerySkeleton = () => {
 	return (
-		<Box sx={{ width: "25vw", aspectRatio: "1/1" }}>
+		<Box sx={{ width: "100%", aspectRatio: "1/1" }}>
 			<Skeleton
 				variant="rectangular"
 				height={"100%"}

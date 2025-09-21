@@ -70,7 +70,7 @@ const theme = createTheme({
 			disabled: "rgba(0, 0, 0, 0.38)",
 		},
 		header: {
-			color: " #ffffff",
+			color: "#ffffff",
 		},
 		hover: {
 			color: "#d4d4d4",

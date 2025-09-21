@@ -1,28 +1,31 @@
 import { lazy, memo, Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { useGetAllProductsQuery } from "../../redux/apiSlices/productsSlice";
-import ProductSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
+import ProductSkeleton from "../../components/Skeleton/ProductSkeleton";
 import ErrorComponent from "../../components/ErrorComponent";
+import { styles } from "./HomeScreen.styes";
+import HomeScreenSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
 
 const Product = lazy(() => import("../../components/Product"));
 const MemoizedProduct = memo(Product);
 
 const HomeScreen = () => {
-	const { data: products, isError } = useGetAllProductsQuery();
+	const { data: products, isFetching, isError } = useGetAllProductsQuery();
 
 	if (isError) {
 		return <ErrorComponent />;
 	}
 
+	if (isFetching) {
+		return (
+			<HomeScreenSkeleton />
+		);
+	}
+
 	return (
 		<Box>
 			<Typography
-				sx={(theme) => ({
-					padding: {
-						xs: theme.spacing(2),
-						md: theme.spacing(3),
-					},
-				})}
+				sx={styles.title}
 				variant="h1"
 			>
 				Products

@@ -28,7 +28,21 @@ export interface ICartState {
 	totalPrice: number;
 }
 
-export interface IUserInfo {
+export interface ILoginInfo {
 	email: string,
 	password: string
+}
+
+export interface IUserInfo {
+	_id: string;
+	name: string;
+	isAdmin: boolean;
+	email: string,
+}
+
+export interface IApiError {
+	data: {
+		message: string;
+	};
+	status: number;
 }

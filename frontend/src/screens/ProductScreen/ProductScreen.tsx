@@ -13,22 +13,41 @@ import AddToCartWidgetSkeleton from "../../components/Skeleton/ProductScreenSlel
 const ProductDetails = lazy(() => import("../../components/ProductDetails"));
 const MemoizedProductDetails = memo(ProductDetails);
 const ProductImageGallery = lazy(
-	() => import("../../components/ProductImageGallery")
+	() => import("../../components/ProductImageGallery"),
 );
 const MemoizedProductImageGallery = memo(ProductImageGallery);
 const AddToCartWidget = lazy(
-	() => import("../../components/AddToCartWidget/AddToCartWidget")
+	() => import("../../components/AddToCartWidget/AddToCartWidget"),
 );
 const MemoizedAddToCartWidget = memo(AddToCartWidget);
 
 const ProductScreen = () => {
 	const { id: producId } = useParams();
-	const { data: product, isError: isErrorGetProduct } = useGetProductByIdQuery(
-		producId ?? ""
+	const { data: product, isError: isErrorGetProduct, isFetching } = useGetProductByIdQuery(
+		producId ?? "",
 	);
 
 	if (isErrorGetProduct) {
 		return <ErrorComponent />;
+	}
+
+	if (isFetching) {
+		return (
+			<Box className="productScreen">
+				<BackButton link="/" />
+				<Box sx={styles.productScreenContent}>
+					<Box sx={styles.imageGalleryWrapper}>
+						<ImageGallerySkeleton />
+					</Box>
+					<Box sx={styles.productDetailsWrapper}>
+						<ProductDetailsSkeleton />
+					</Box>
+					<Box sx={styles.addToCartWrapper}>
+						<AddToCartWidgetSkeleton />
+					</Box>
+				</Box>
+			</Box>
+		);
 	}
 
 	return (
@@ -36,18 +55,25 @@ const ProductScreen = () => {
 			<Box className="productScreen">
 				<BackButton link="/" />
 				<Box sx={styles.productScreenContent}>
-					<Suspense fallback={<ImageGallerySkeleton />}>
-						<MemoizedProductImageGallery
-							src={product.image}
-							productName={product.name}
-						/>
-					</Suspense>
-					<Suspense fallback={<ProductDetailsSkeleton />}>
-						<MemoizedProductDetails productItem={product} />
-					</Suspense>
-					<Suspense fallback={<AddToCartWidgetSkeleton />}>
-						<MemoizedAddToCartWidget productItem={product} />
-					</Suspense>
+					<Box sx={styles.imageGalleryWrapper}>
+						<Suspense fallback={<ImageGallerySkeleton />}>
+							<MemoizedProductImageGallery
+								src={product.image}
+								productName={product.name}
+							/>
+						</Suspense>
+					</Box>
+					<Box sx={styles.productDetailsWrapper}>
+						<Suspense fallback={<ProductDetailsSkeleton />}>
+							<MemoizedProductDetails productItem={product} />
+						</Suspense>
+					</Box>
+					<Box sx={styles.addToCartWrapper}>
+						<Suspense fallback={<AddToCartWidgetSkeleton />}>
+							<MemoizedAddToCartWidget productItem={product} />
+						</Suspense>
+					</Box>
+
 				</Box>
 			</Box>
 		)

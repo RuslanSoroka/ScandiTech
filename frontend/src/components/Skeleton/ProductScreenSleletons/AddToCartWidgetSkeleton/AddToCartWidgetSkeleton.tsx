@@ -2,10 +2,10 @@ import { Box, Skeleton } from "@mui/material";
 
 const AddToCartWidgetSkeleton = () => {
 	return (
-		<Box sx={{ width: "20vw", aspectRatio: "2/1.3" }}>
+		<Box sx={{ width: "100%", aspectRatio: "2/1.3" }}>
 			<Skeleton
 				variant="rectangular"
-				height={"100%"}
+				height={"13.75rem"}
 				width={"100%"}
 				sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", borderRadius: 3 }}
 			/>

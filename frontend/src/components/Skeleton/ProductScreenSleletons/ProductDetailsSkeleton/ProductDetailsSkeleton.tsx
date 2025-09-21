@@ -2,10 +2,10 @@ import { Box, Skeleton } from "@mui/material";
 
 const ProductDetailsSkeleton = () => {
 	return (
-		<Box sx={{ width: "40vw", aspectRatio: "3/1" }}>
+		<Box sx={{ width: "100%", aspectRatio: "3/1" }}>
 			<Skeleton
 				variant="rectangular"
-				height={"100%"}
+				height="10.94rem"
 				width={"100%"}
 				sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", borderRadius: 3 }}
 			/>
