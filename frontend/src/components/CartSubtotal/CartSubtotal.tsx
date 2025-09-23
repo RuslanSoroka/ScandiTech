@@ -1,4 +1,5 @@
 import { Button, Paper, Typography } from "@mui/material";
+import {Link as RouterLink} from 'react-router-dom';
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { styles } from "./CartSubtotal.styles";
 
@@ -16,7 +17,12 @@ const CartSubtotal = () => {
 				${price}
 			</Typography>
 
-			<Button sx={styles.button} variant="contained">
+			<Button
+				sx={styles.button}
+				variant="contained"
+				component={RouterLink}
+				to="/shipping"
+			>
 				Proceed to checkout
 			</Button>
 		</Paper>

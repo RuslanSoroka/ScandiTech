@@ -1,4 +1,4 @@
-import { styles } from "./LoginScreen.styles";
+import {FormScreensSharedStyles as loginStyles, UnderFormLinkSharedStyles as loginLinkStyles} from "../../utils/shardStyles/formsSharedStyles.styles";
 import { Box, Button, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -49,19 +49,19 @@ const LoginScreen = () => {
 		}
 	};
 	return (
-		<Box sx={styles.loginScreen}>
+		<Box sx={loginStyles.screen}>
 			<Typography variant="h1">Sign In</Typography>
-			<Box sx={styles.form} component="form" onSubmit={handleSubmit(onSubmit)}>
-				<Box sx={styles.formContent}>
+			<Box sx={loginStyles.formContainer} component="form" onSubmit={handleSubmit(onSubmit)}>
+				<Box sx={loginStyles.formContent}>
 					<FormInput name={"email"} label={"Email"} control={control} />
 					<FormInput name={"password"} label={"Password"} control={control} />
 				</Box>
-				<Box sx={styles.formSubmit}>
+				<Box sx={loginStyles.formSubmit}>
 					<Button disabled={isLoadingPostInfo} type="submit" variant="contained">
 						Sign in
 					</Button>
 				</Box>
-				<Box sx={styles.register}>
+				<Box sx={loginLinkStyles.link}>
 					<Typography>New customer?</Typography> <Link component={RouterLink} to={"/registration"}>Register</Link>
 				</Box>
 			</Box>

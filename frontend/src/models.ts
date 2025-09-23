@@ -20,9 +20,18 @@ export interface ICartItem {
 	quantity: number;
 }
 
+export interface IShippingInfo {
+	address: string;
+	city: string;
+	postalCode: string;
+	country: string;
+}
+
 export interface ICartState {
 	cartItems: ICartItem[];
+	paymentMethod: string;
 	price: number;
+	shippingAddress: IShippingInfo;
 	shippingPrice: number;
 	taxPrice: number;
 	totalPrice: number;
@@ -34,7 +43,7 @@ export interface ILoginInfo {
 }
 
 export interface IRegistrationInfo {
-	firstName: string
+	firstName: string;
 	lastName: string;
 	email: string;
 	password: string;

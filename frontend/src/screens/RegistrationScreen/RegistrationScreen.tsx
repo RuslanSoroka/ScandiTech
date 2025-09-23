@@ -1,4 +1,4 @@
-import { styles } from "../LoginScreen/LoginScreen.styles";
+import {FormScreensSharedStyles as registrationStyles, UnderFormLinkSharedStyles as registrationLinkStyles} from "../../utils/shardStyles/formsSharedStyles.styles";
 import { Box, Button, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -46,22 +46,22 @@ const RegistrationScreen = () => {
 		}
 	};
 	return (
-		<Box sx={styles.loginScreen}>
+		<Box sx={registrationStyles.screen}>
 			<Typography variant="h1">Sign Up</Typography>
-			<Box sx={styles.form} component="form" onSubmit={handleSubmit(onSubmit)}>
-				<Box sx={styles.formContent}>
+			<Box sx={registrationStyles.formContainer} component="form" onSubmit={handleSubmit(onSubmit)}>
+				<Box sx={registrationStyles.formContent}>
 					<FormInput name={'firstName'} label={"First Name"} control={control}/>
 					<FormInput name={'lastName'} label={"Last Name"} control={control}/>
 					<FormInput name={'email'} label={"Email"} control={control}/>
 					<FormInput name={'password'} label={"Password"} control={control}/>
 					<FormInput name={'repeatPassword'} label={"Repeat password"} control={control}/>
 				</Box>
-				<Box sx={styles.formSubmit}>
+				<Box sx={registrationStyles.formSubmit}>
 					<Button disabled={isLoadingRegistration} type="submit" variant="contained">
 						Register
 					</Button>
 				</Box>
-				<Box sx={styles.register}>
+				<Box sx={registrationLinkStyles.link}>
 					<Typography>Already have an account?</Typography> <Link component={RouterLink} to={"/login"}>Login</Link>
 				</Box>
 			</Box>
