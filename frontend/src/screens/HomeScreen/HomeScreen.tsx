@@ -2,7 +2,7 @@ import { lazy, memo, Suspense } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { useGetAllProductsQuery } from "../../redux/apiSlices/productsSlice";
 import ProductSkeleton from "../../components/Skeleton/ProductSkeleton";
-import ErrorComponent from "../../components/ErrorComponent";
+import ErrorComponent from "../../components/UI/ErrorComponent";
 import { styles } from "./HomeScreen.styes";
 import HomeScreenSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
 

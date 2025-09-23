@@ -1,5 +1,6 @@
 import { apiSlice } from "./apiSlice";
 import { USERS_URL } from "../../utils/constants";
+import { data } from "react-router-dom";
 
 const usersApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
@@ -15,8 +16,16 @@ const usersApiSlice = apiSlice.injectEndpoints({
 				url: `${USERS_URL}/logout`,
 				method: "POST",
 			}),
-		})
+		}),
+		registration: builder.mutation({
+			query: (data)=> ({
+				url: `${USERS_URL}/`,
+				method: "POST",
+				body: data,
+			})
+		}),
 	}),
+
 });
 
-export const {useLoginMutation, useLogoutMutation} = usersApiSlice;
+export const {useLoginMutation, useLogoutMutation, useRegistrationMutation} = usersApiSlice;

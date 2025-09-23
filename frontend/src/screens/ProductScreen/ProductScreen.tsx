@@ -2,8 +2,8 @@ import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import styles from "./ProductScreen.styles";
 import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
-import BackButton from "../../components/BackButton";
-import ErrorComponent from "../../components/ErrorComponent";
+import BackButton from "../../components/UI/BackButton";
+import ErrorComponent from "../../components/UI/ErrorComponent";
 
 import { lazy, memo, Suspense } from "react";
 import ImageGallerySkeleton from "../../components/Skeleton/ProductScreenSleletons/ImageGallerySkeleton";

@@ -1,6 +1,6 @@
 import { IProduct } from "../../models";
 import { Box, Paper, Stack, Typography } from "@mui/material";
-import Rating from "../Rating";
+import Rating from "../UI/Rating";
 import styles from "./Product.styles";
 import { Link } from "react-router-dom";
 

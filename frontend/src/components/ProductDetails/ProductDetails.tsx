@@ -1,6 +1,6 @@
 import { styles } from "./ProductDetails.styles";
 import { Box, Typography } from "@mui/material";
-import Rating from "../Rating";
+import Rating from "../UI/Rating";
 import { IProduct } from "../../models";
 
 interface IProductDetailsProps {

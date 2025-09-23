@@ -17,7 +17,7 @@ import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
 import { useLogoutMutation } from "../../redux/apiSlices/usersApiSlice";
 import { logout } from "../../redux/slices/authSlice";
-import UserAvatar from "../UserAvatar";
+import UserAvatar from "../UI/UserAvatar";
 import { isApiError } from "../../utils/helpers/typeGuards";
 import toast from "react-hot-toast";
 

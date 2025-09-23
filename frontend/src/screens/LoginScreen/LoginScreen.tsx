@@ -1,9 +1,7 @@
 import { styles } from "./LoginScreen.styles";
 import { Box, Button, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import TextField from "@mui/material/TextField";
-import theme from "../../utils/theme/theme";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoginSchema from "../../utils/validationShemas/LoginSchema";
 import { setCredentials } from "../../redux/slices/authSlice";
@@ -15,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { ILoginInfo } from "../../models";
 import toast from "react-hot-toast";
 import { isApiError } from "../../utils/helpers/typeGuards";
+import FormInput from "../../components/UI/FormInput";
 
 interface IFormInput {
 	email: string;
@@ -26,7 +25,7 @@ const LoginScreen = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	const [postUserInfo, { isLoading: isLoadingPostInfo }] = useLoginMutation();
-	const { control, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+	const { control, handleSubmit } = useForm<IFormInput>({
 		resolver: yupResolver(LoginSchema),
 	});
 
@@ -54,41 +53,8 @@ const LoginScreen = () => {
 			<Typography variant="h1">Sign In</Typography>
 			<Box sx={styles.form} component="form" onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={styles.formContent}>
-					<Controller
-						name="email"
-						control={control}
-						render={({ field }) => (
-							<TextField
-								{...field}
-								autoComplete="true"
-								label="Email"
-								error={typeof errors.email?.message === "string"}
-								helperText={errors.email?.message}
-								sx={{
-									"& .MuiInputLabel-root": {
-										color: theme.palette.text.primary,
-									},
-								}}
-							/>
-						)}
-					/>
-					<Controller
-						name="password"
-						control={control}
-						render={({ field }) =>
-							<TextField
-								{...field}
-								autoComplete="true"
-								label="Password"
-								error={typeof errors.password?.message === "string"}
-								helperText={errors.password?.message}
-								sx={{
-									"& .MuiInputLabel-root": {
-										color: theme.palette.text.primary,
-									},
-								}}
-							/>}
-					/>
+					<FormInput name={"email"} label={"Email"} control={control} />
+					<FormInput name={"password"} label={"Password"} control={control} />
 				</Box>
 				<Box sx={styles.formSubmit}>
 					<Button disabled={isLoadingPostInfo} type="submit" variant="contained">
@@ -96,7 +62,7 @@ const LoginScreen = () => {
 					</Button>
 				</Box>
 				<Box sx={styles.register}>
-					<Typography>New customer?</Typography> <Link component={RouterLink} to={""}>Register</Link>
+					<Typography>New customer?</Typography> <Link component={RouterLink} to={"/registration"}>Register</Link>
 				</Box>
 			</Box>
 		</Box>

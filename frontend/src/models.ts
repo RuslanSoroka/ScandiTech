@@ -29,15 +29,23 @@ export interface ICartState {
 }
 
 export interface ILoginInfo {
-	email: string,
-	password: string
+	email: string;
+	password: string;
+}
+
+export interface IRegistrationInfo {
+	firstName: string
+	lastName: string;
+	email: string;
+	password: string;
+	repeatPassword: string;
 }
 
 export interface IUserInfo {
 	_id: string;
 	name: string;
 	isAdmin: boolean;
-	email: string,
+	email: string;
 }
 
 export interface IApiError {
