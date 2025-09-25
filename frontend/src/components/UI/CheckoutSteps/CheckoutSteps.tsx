@@ -23,7 +23,6 @@ const renderStep = (active: boolean, path: string, content: string): JSX.Element
 };
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }: ICheckoutStepsProps) => {
-	console.log(step1, step3);
 	return (
 		<Box component="nav" sx={styles.navStep}>
 			{renderStep(!!step1, "/login", "Login")}

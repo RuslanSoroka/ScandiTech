@@ -11,6 +11,7 @@ import LoginScreen from "../screens/LoginScreen";
 import RegistrationScreen from "../screens/RegistrationScreen";
 import ShippingScreen from "../screens/ShippingScreen";
 import PrivateRoute from "./PrivateRoute.tsx";
+import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";
 
 let router = createBrowserRouter(
 	createRoutesFromElements(
@@ -22,6 +23,7 @@ let router = createBrowserRouter(
 			<Route path={"/registration"} element={<RegistrationScreen />} />
 			<Route path="" element={<PrivateRoute />}>
 				<Route path="/shipping" element={<ShippingScreen />} />
+				<Route path="/payment" element={<PaymentScreen />} />
 			</Route>
 		</Route>,
 	),

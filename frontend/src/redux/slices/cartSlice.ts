@@ -17,7 +17,7 @@ const initialState: ICartState =
 			taxPrice: 0,
 			totalPrice: 0,
 			shippingAddress: {},
-			paymentMethod: "PayPal",
+			paymentMethod: "",
 		};
 
 const cartSlice = createSlice({
@@ -61,9 +61,14 @@ const cartSlice = createSlice({
 			state.shippingAddress = action.payload;
 			updateCart(state);
 		},
+		addPaymentMethod: (state,action: PayloadAction<string>) => {
+			console.log(state);
+			state.paymentMethod = action.payload;
+			updateCart(state);
+		}
 	},
 });
 
-export const { addCartItem, updateQuantity, deleteItem, addShippingAddress } = cartSlice.actions;
+export const { addCartItem, updateQuantity, deleteItem, addShippingAddress, addPaymentMethod } = cartSlice.actions;
 
 export default cartSlice.reducer;

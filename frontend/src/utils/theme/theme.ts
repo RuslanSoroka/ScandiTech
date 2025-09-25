@@ -66,7 +66,7 @@ const theme = createTheme({
 		},
 		text: {
 			primary: "#555555",
-			secondary: "#ffffff",
+			// secondary: "#ffffff",
 			disabled: "rgba(0, 0, 0, 0.38)",
 		},
 		header: {

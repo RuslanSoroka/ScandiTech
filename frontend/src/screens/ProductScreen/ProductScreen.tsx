@@ -22,9 +22,9 @@ const AddToCartWidget = lazy(
 const MemoizedAddToCartWidget = memo(AddToCartWidget);
 
 const ProductScreen = () => {
-	const { id: producId } = useParams();
+	const { id: productId } = useParams();
 	const { data: product, isError: isErrorGetProduct, isFetching } = useGetProductByIdQuery(
-		producId ?? "",
+		productId ?? "",
 	);
 
 	if (isErrorGetProduct) {
@@ -73,7 +73,6 @@ const ProductScreen = () => {
 							<MemoizedAddToCartWidget productItem={product} />
 						</Suspense>
 					</Box>
-
 				</Box>
 			</Box>
 		)
