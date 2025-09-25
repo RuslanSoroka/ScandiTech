@@ -8,6 +8,7 @@ import { useAppSelector,  useAppDispatch  } from "../../hooks/reduxHooks";
 import { IShippingInfo } from "../../models";
 import FormInput from "../../components/UI/FormInput";
 import ShippingSchema from "../../utils/validationShemas/ShippingSchema";
+import CheckoutSteps from "../../components/UI/CheckoutSteps";
 
 
 const ShippingScreen = () => {
@@ -30,6 +31,7 @@ const ShippingScreen = () => {
 	};
 	return (
 		<Box sx={shippingStyles.screen}>
+			<CheckoutSteps step1 step2 />
 			<Typography variant="h1">Shipping</Typography>
 			<Box sx={shippingStyles.formContainer} component="form" onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={shippingStyles.formContent}>
