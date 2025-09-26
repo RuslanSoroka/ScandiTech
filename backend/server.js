@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { notFound, errorHandler } from "./middleware/errorMidlleware.js";
 import productRoutes from "./routes/productsRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 const port = process.env.PORT || 5000;
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => {
 
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
+app.use("/orders", orderRoutes);
 
 app.use(notFound);
 
