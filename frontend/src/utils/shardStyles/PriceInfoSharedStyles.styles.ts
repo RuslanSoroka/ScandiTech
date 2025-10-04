@@ -9,7 +9,7 @@ export const PriceInfoSharedStyles = {
 		width: "100%",
 		"& > *:not(:last-child)": {
 			borderBottom: `2px solid ${theme.palette.divider}`,
-		}
+		},
 	}),
 	flexWrapper: (theme: Theme) => ({
 		display: "flex",
@@ -23,6 +23,11 @@ export const PriceInfoSharedStyles = {
 		},
 		"&:last-child": {
 			justifyContent: "flex-end",
+		},
+		[theme.breakpoints.down("lg")]: {
+			"& p": {
+				fontSize: "1.5rem",
+			},
 		},
 	}),
 };

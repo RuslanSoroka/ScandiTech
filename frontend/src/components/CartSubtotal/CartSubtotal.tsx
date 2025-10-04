@@ -4,14 +4,11 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 import { styles } from "./CartSubtotal.styles";
 
 const CartSubtotal = () => {
-	const { cartItemCount, price } = useAppSelector((state) => ({
-		cartItemCount: state.cart.cartItems.length,
-		price: state.cart.price,
-	}));
+	const { cartItems, price } = useAppSelector((state) => state.cart);
 	return (
 		<Paper sx={styles.subtotal}>
 			<Typography variant="h3" component="h2">
-				{`Subtotal (${cartItemCount.toString()}) items`}
+				{`Subtotal (${cartItems.length.toString()}) items`}
 			</Typography>
 			<Typography sx={styles.price} variant="body1">
 				${price}

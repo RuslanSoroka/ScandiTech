@@ -12,7 +12,6 @@ const PaymentScreen = () => {
 	const dispatch = useAppDispatch();
 	const { shippingAddress } = useAppSelector((state) => state.cart);
 	const [paymentMethod, setPaymentMethod] = useState<string>("PayPal");
-	console.log(shippingAddress);
 
 	useEffect(() => {
 		if (!shippingAddress.address) {

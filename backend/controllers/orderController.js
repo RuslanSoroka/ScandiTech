@@ -19,7 +19,6 @@ export const addOrderItems = asyncHandler(async (req, res) => {
 		const order = new Order({
 			orderItems: orderItems.map((x) => ({
 				...x,
-				qty: x.quantity,
 				product: x._id,
 				id: undefined,
 			})), user: req.user._id, totalPrice, shippingAddress, paymentMethod, taxPrice, shippingPrice, price,
