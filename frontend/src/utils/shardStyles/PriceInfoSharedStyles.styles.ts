@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-export const styles = {
+export const PriceInfoSharedStyles = {
 	addToCartWidget: (theme: Theme) => ({
 		display: "flex",
 		flexDirection: "column",

@@ -3,7 +3,7 @@ import Order from "../models/orderSchema.js";
 
 export const addOrderItems = asyncHandler(async (req, res) => {
 	const {
-		cartItems,
+		orderItems,
 		paymentMethod,
 		price,
 		shippingAddress,
@@ -12,17 +12,17 @@ export const addOrderItems = asyncHandler(async (req, res) => {
 		totalPrice,
 	} = req.body;
 
-	if (cartItems && cartItems.length === 0) {
+	if (orderItems && orderItems.length === 0) {
 		res.status(400);
 		throw new Error("The cart list is empty");
 	} else {
 		const order = new Order({
-			orderItems: cartItems.map((x) => ({
+			orderItems: orderItems.map((x) => ({
 				...x,
 				qty: x.quantity,
 				product: x._id,
 				id: undefined,
-			})), totalPrice, shippingAddress, paymentMethod, taxPrice, shippingPrice, price,
+			})), user: req.user._id, totalPrice, shippingAddress, paymentMethod, taxPrice, shippingPrice, price,
 		});
 
 		const createdOrder = await order.save();

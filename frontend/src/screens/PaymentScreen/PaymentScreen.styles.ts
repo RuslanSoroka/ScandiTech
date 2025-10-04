@@ -7,7 +7,6 @@ export const styles = {
 		alignItems: "center",
 		justifyContent: "center",
 		gap: theme.spacing(3),
-		paddingY: theme.spacing(2),
 	}),
 	content: (theme: Theme) => ({
 		"& h1": {

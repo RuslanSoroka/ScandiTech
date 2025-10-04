@@ -1,4 +1,4 @@
-import { styles } from "./AddToCartWidget.styles";
+import { PriceInfoSharedStyles as productStyles } from "../../utils/shardStyles/PriceInfoSharedStyles.styles";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { IProduct, ICartItem } from "../../models";
 import { useAppDispatch } from "../../hooks/reduxHooks";
@@ -17,18 +17,18 @@ const AddToCartWidget = ({ productItem }: AddToCartWidgetProps) => {
 		dispatch(addCartItem(cartItem));
 	};
 	return (
-		<Paper sx={styles.addToCartWidget}>
-			<Box sx={styles.flexWrapper}>
+		<Paper sx={productStyles.addToCartWidget}>
+			<Box sx={productStyles.flexWrapper}>
 				<Typography variant="body1">Price:</Typography>
 				<Typography variant="body1">${productItem.price}</Typography>
 			</Box>
-			<Box sx={styles.flexWrapper}>
+			<Box sx={productStyles.flexWrapper}>
 				<Typography variant="body1">Status:</Typography>
 				<Typography variant="body1">
 					{productItem.countInStock > 0 ? "In the stock" : "Out of stock"}
 				</Typography>
 			</Box>
-			<Box sx={styles.flexWrapper}>
+			<Box sx={productStyles.flexWrapper}>
 				<Button
 					onClick={() =>
 						handleAddToCart({
