@@ -1,10 +1,7 @@
 import { PriceInfoSharedStyles as orderStyles } from "../../utils/shardStyles/PriceInfoSharedStyles.styles";
 import { Box, Button, Paper, Typography } from "@mui/material";
-import { useAppSelector, useAppDispatch } from "../../hooks/reduxHooks";
-import { useEffect } from "react";
+import {  useAppDispatch } from "../../hooks/reduxHooks";
 import { useNavigate } from "react-router-dom";
-import { useCreateOrderMutation } from "../../redux/apiSlices/orderApiSlice";
-import { clearCartItems } from "../../redux/slices/cartSlice";
 import { isApiError } from "../../utils/helpers/typeGuards";
 import toast from "react-hot-toast";
 

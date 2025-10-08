@@ -2,7 +2,6 @@ import {OrderSharedStyles as orderStyles} from "../../utils/shardStyles/OrderSha
 import { Box, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useGetSingleOrderQuery } from "../../redux/apiSlices/orderApiSlice";
-import OrderSummary from "../../components/OrderSummary";
 import OrderListItems from "../../components/OrderListItems";
 import StatusBadge from "../../components/UI/StatusBadge";
 import FinalOrderSummary from "../../components/FinalOrderSummary";
