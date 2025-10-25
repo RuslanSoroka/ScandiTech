@@ -27,7 +27,6 @@ const CartItem = ({ key, itemData }: CartItemProps) => {
 	const handleChange = (event: SelectChangeEvent) => {
 		const selectedQuantity: number = Number(event.target.value);
 		dispatch(updateQuantity({ _id, quantity: selectedQuantity }));
-		console.log(selectedQuantity);
 	};
 
 	const hanleDeleteItem = (id: string) => {

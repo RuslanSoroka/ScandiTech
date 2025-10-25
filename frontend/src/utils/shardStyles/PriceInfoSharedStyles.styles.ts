@@ -11,19 +11,22 @@ export const PriceInfoSharedStyles = {
 			borderBottom: `2px solid ${theme.palette.divider}`,
 		},
 	}),
-	flexWrapper: (theme: Theme) => ({
+	flexWrapper: (theme: Theme, finalOrder?: boolean) => ({
 		display: "flex",
 		justifyContent: "space-between",
 		padding: theme.spacing(3),
 		gap: theme.spacing(3),
+
 		"> :last-child": {
 			fontWeight: {
 				fontWeight: "700",
 			},
 		},
-		"&:last-child": {
-			justifyContent: "flex-end",
-		},
+		...(!finalOrder && {
+			"&:last-child": {
+				justifyContent: "flex-end",
+			},
+		}),
 		[theme.breakpoints.down("lg")]: {
 			"& p": {
 				fontSize: "1.5rem",

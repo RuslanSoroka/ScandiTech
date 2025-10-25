@@ -5,7 +5,7 @@ export const addOrderItems = asyncHandler(async (req, res) => {
 	const {
 		orderItems,
 		paymentMethod,
-		price,
+		itemsPrice,
 		shippingAddress,
 		shippingPrice,
 		taxPrice,
@@ -21,7 +21,7 @@ export const addOrderItems = asyncHandler(async (req, res) => {
 				...x,
 				product: x._id,
 				id: undefined,
-			})), user: req.user._id, totalPrice, shippingAddress, paymentMethod, taxPrice, shippingPrice, price,
+			})), user: req.user._id, totalPrice, shippingAddress, paymentMethod, taxPrice, shippingPrice,itemsPrice,
 		});
 
 		const createdOrder = await order.save();
@@ -45,7 +45,7 @@ export const getOrderById = asyncHandler(async (req, res) => {
 });
 
 export const updateOrderToPaid = asyncHandler(async (req, res) => {
-	const order = Order.findById(req.params.id);
+	const order = await Order.findById(req.params.id);
 
 	if (order) {
 		order.isPaid = true;

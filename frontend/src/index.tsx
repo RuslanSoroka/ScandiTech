@@ -8,9 +8,16 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./utils/theme/theme";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
+import { PayPalScriptProvider, ReactPayPalScriptOptions } from "@paypal/react-paypal-js";
+
+const initialOptions: ReactPayPalScriptOptions = {
+	clientId: process.env.REACT_APP_PAYPAL_CLIENT_ID as string,
+	currency: "EUR",
+	intent: "capture",
+};
 
 const root = ReactDOM.createRoot(
-	document.getElementById("root") as HTMLElement
+	document.getElementById("root") as HTMLElement,
 );
 
 root.render(
@@ -18,8 +25,10 @@ root.render(
 		<Provider store={store}>
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-				<RouterProvider router={router} />
+				<PayPalScriptProvider options={initialOptions}>
+					<RouterProvider router={router} />
+				</PayPalScriptProvider>
 			</ThemeProvider>
 		</Provider>
-	</React.StrictMode>
+	</React.StrictMode>,
 );
