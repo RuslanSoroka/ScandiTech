@@ -50,6 +50,10 @@ export interface IRegistrationInfo {
 	repeatPassword: string;
 }
 
+export type TUpdateProfile<T> = {
+	[K in keyof T]?: T[K] | undefined
+}
+
 export interface IUserInfo {
 	_id: string;
 	name: string;

@@ -1,2 +1,2 @@
-import UpdateUserDataTab from "./UpdateUserDataTab";
-export default UpdateUserDataTab;
+import UpdateProfileDataTab from "./UpdateProfileDataTab";
+export default UpdateProfileDataTab;

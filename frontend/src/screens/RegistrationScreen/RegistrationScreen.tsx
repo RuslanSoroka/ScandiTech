@@ -1,5 +1,5 @@
 import {FormScreensSharedStyles as registrationStyles, UnderFormLinkSharedStyles as registrationLinkStyles} from "../../utils/shardStyles/formsSharedStyles.styles";
-import { Box, Button, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,7 +13,7 @@ import { IRegistrationInfo } from "../../models";
 import toast from "react-hot-toast";
 import { isApiError } from "../../utils/helpers/typeGuards";
 import RegistrationSchema from "../../utils/validationShemas/RegistrarionSchema";
-import FormInput from "../../components/UI/FormInput";
+import UserDataForm from "../../components/UI/UserDataForm";
 
 
 const RegistrationScreen = () => {
@@ -35,7 +35,7 @@ const RegistrationScreen = () => {
 		const { firstName, lastName, email, password } = data;
 		const userName = `${firstName} ${lastName}`
 		try {
-			const res = await registerNewUser({ name: userName, email, password }).unwrap();
+			const res = await registerNewUser({ name: userName.trim().toUpperCase(), email, password }).unwrap();
 			dispatch(setCredentials({ ...res }));
 		} catch (error) {
 			if (isApiError(error)) {
@@ -48,23 +48,11 @@ const RegistrationScreen = () => {
 	return (
 		<Box sx={registrationStyles.screen}>
 			<Typography variant="h1">Sign Up</Typography>
-			<Box sx={registrationStyles.formContainer} component="form" onSubmit={handleSubmit(onSubmit)}>
-				<Box sx={registrationStyles.formContent}>
-					<FormInput name={'firstName'} label={"First Name"} control={control}/>
-					<FormInput name={'lastName'} label={"Last Name"} control={control}/>
-					<FormInput name={'email'} label={"Email"} control={control}/>
-					<FormInput name={'password'} label={"Password"} control={control}/>
-					<FormInput name={'repeatPassword'} label={"Repeat password"} control={control}/>
-				</Box>
-				<Box sx={registrationStyles.formSubmit}>
-					<Button disabled={isLoadingRegistration} type="submit" variant="contained">
-						Register
-					</Button>
-				</Box>
+			<UserDataForm control={control} handleSubmit={handleSubmit} onSubmit={onSubmit} isLoading={isLoadingRegistration as boolean} buttonName='Registration'>
 				<Box sx={registrationLinkStyles.link}>
 					<Typography>Already have an account?</Typography> <Link component={RouterLink} to={"/login"}>Login</Link>
 				</Box>
-			</Box>
+			</UserDataForm>
 		</Box>
 	);
 };

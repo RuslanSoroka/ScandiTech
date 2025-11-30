@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {IUserInfo} from "../../models";
-
+import { IUserInfo } from "../../models";
 
 interface IAuthState {
 	userInfo: IUserInfo | null;
 }
 
 const initialState: IAuthState = {
-	userInfo: localStorage.getItem("userInfo") !== null ? JSON.parse(localStorage.getItem("userInfo")!) : null,
+	userInfo:
+		localStorage.getItem("userInfo") !== null
+			? JSON.parse(localStorage.getItem("userInfo")!)
+			: null,
 };
 
 const authSlice = createSlice({
@@ -16,11 +18,11 @@ const authSlice = createSlice({
 	reducers: {
 		setCredentials: (state, action: PayloadAction<IUserInfo>) => {
 			state.userInfo = action.payload;
-			localStorage.setItem('userInfo', JSON.stringify(state.userInfo));
+			localStorage.setItem("userInfo", JSON.stringify(state.userInfo));
 		},
-		logout: (state)=> {
+		logout: (state) => {
 			state.userInfo = null;
-			localStorage.removeItem('userInfo')
+			localStorage.removeItem("userInfo");
 		},
 	},
 });

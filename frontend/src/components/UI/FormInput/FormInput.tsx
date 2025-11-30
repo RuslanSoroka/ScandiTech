@@ -9,7 +9,11 @@ interface IFormInputProps<T extends FieldValues> {
 	control: Control<T>;
 }
 
-const FormInput = <T extends FieldValues>({ name, label, control, }: IFormInputProps<T>) => {
+const FormInput = <T extends FieldValues>({
+	name,
+	label,
+	control,
+}: IFormInputProps<T>) => {
 	return (
 		<Controller
 			name={name}
