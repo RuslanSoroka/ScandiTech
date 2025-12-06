@@ -23,8 +23,8 @@ const UserDataForm = <T extends Record<string, any>>({ control, handleSubmit, on
 				<FormInput name={"firstName" as Path<T>} label={"First Name"} control={control} />
 				<FormInput name={"lastName" as Path<T>} label={"Last Name"} control={control} />
 				<FormInput name={"email" as Path<T>} label={"Email"} control={control} />
-				<FormInput name={"password" as Path<T>} label={"Password"} control={control} />
-				<FormInput name={"repeatPassword" as Path<T>} label={"Repeat password"} control={control} />
+				<FormInput name={"password" as Path<T>} label={"Password"} control={control} type="password"/>
+				<FormInput name={"repeatPassword" as Path<T>} label={"Repeat password"} control={control} type="password"/>
 			</Box>
 			<Box sx={registrationStyles.formSubmit}>
 				<Button disabled={isLoading} type="submit" variant="contained">

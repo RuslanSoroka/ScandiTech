@@ -53,8 +53,8 @@ const LoginScreen = () => {
 			<Typography variant="h1">Sign In</Typography>
 			<Box sx={loginStyles.formContainer} component="form" onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={loginStyles.formContent}>
-					<FormInput name={"email"} label={"Email"} control={control} />
-					<FormInput name={"password"} label={"Password"} control={control} />
+					<FormInput name="email" label="Email" control={control} />
+					<FormInput name="password" label="Password" type="password" control={control} />
 				</Box>
 				<Box sx={loginStyles.formSubmit}>
 					<Button disabled={isLoadingPostInfo} type="submit" variant="contained">
