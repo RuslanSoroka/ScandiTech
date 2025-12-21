@@ -4,6 +4,7 @@ import { Box, Tab, Tabs, Typography } from "@mui/material";
 import { useState, SyntheticEvent } from "react";
 import ProfileTabPanel from "../../components/UI/ProfileTabPanel";
 import UpdateUserDataTab from "../../components/UpdateProfileDataTab";
+import OrderedItemsTab from "../../components/OrderedItemstab";
 
 function a11yProps(index: number) {
 	return {
@@ -36,7 +37,7 @@ const ProfileScreen = () => {
 				<UpdateUserDataTab />
 			</ProfileTabPanel>
 			<ProfileTabPanel value={value} index={1}>
-				Item Two
+				<OrderedItemsTab/>
 			</ProfileTabPanel>
 		</Box>
 	);

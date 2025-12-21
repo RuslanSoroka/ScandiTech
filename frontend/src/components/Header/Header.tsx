@@ -29,12 +29,15 @@ const Header = () => {
 
 	const [logoutApi] = useLogoutMutation();
 
-	const [hamburgerEl, setHamburgerEl] = React.useState<null | HTMLElement>(null);
+	const [hamburgerEl, setHamburgerEl] = React.useState<null | HTMLElement>(
+		null
+	);
 	const open = !!hamburgerEl;
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setHamburgerEl(event.currentTarget);
 	};
+
 	const handleClose = () => {
 		setHamburgerEl(null);
 	};
@@ -59,10 +62,7 @@ const Header = () => {
 			<AppBar position="static">
 				<Container maxWidth="xxl">
 					<Toolbar sx={styles.toolbar}>
-						<Box
-							sx={styles.contentWrapper}
-
-						>
+						<Box sx={styles.contentWrapper}>
 							<Box sx={styles.logo}>
 								<Link component={RouterLink} to="/" aria-label="Go to homepage">
 									<Typography variant="h4" component="div">
@@ -71,9 +71,7 @@ const Header = () => {
 								</Link>
 							</Box>
 							<Box sx={styles.menuWrapper}>
-								<Box
-									sx={styles.menu}
-								>
+								<Box sx={styles.menu}>
 									<IconButton
 										to={"/cart"}
 										aria-label="shopping cart"
@@ -103,25 +101,20 @@ const Header = () => {
 													"aria-labelledby": "menuButton",
 												}}
 											>
-												<MenuItem onClick={handleClose}>
-													Profile
-												</MenuItem>
-												<MenuItem onClick={handleLogout}>
-													Logout
-												</MenuItem>
+												<MenuItem component={RouterLink} to='/profile' onClick={handleClose}>Profile</MenuItem>
+												<MenuItem onClick={handleLogout}>Logout</MenuItem>
 											</Menu>
 										</Box>
 									) : (
 										<IconButton
+											component={RouterLink}
 											to={!userInfo ? "/login" : "/"}
 											sx={styles.iconButton}
 											aria-label="sign in"
-											component={RouterLink}
 										>
 											<FaUser size={25} />
 										</IconButton>
 									)}
-
 								</Box>
 							</Box>
 						</Box>

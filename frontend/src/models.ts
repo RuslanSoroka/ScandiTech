@@ -51,14 +51,26 @@ export interface IRegistrationInfo {
 }
 
 export type TUpdateProfile<T> = {
-	[K in keyof T]?: T[K] | undefined
-}
+	[K in keyof T]?: T[K] | undefined;
+};
 
 export interface IUserInfo {
 	_id: string;
 	name: string;
 	isAdmin: boolean;
 	email: string;
+}
+
+export interface IOrderedItem extends ICartState {
+	createdAt: string;
+	isDelivered: boolean;
+	isPaid: boolean;
+	paidAt?: string;
+	deliveredAt?: string;
+	updatedAt: string;
+	user: string;
+	__v: number;
+	_id: string;
 }
 
 export interface IApiError {
