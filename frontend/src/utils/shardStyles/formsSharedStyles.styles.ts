@@ -11,10 +11,13 @@ export const FormScreensSharedStyles = {
 		gap: theme.spacing(5),
 		paddingY: theme.spacing(2),
 	}),
-	formContainer: {
+	formContainer: (theme: Theme) => ({
 		width: "30rem",
 		height: "100%",
-	},
+		[theme.breakpoints.down("lg")]: {
+			width: "100%",
+		},
+	}),
 	formContent: (theme: Theme) => ({
 		display: "flex",
 		flexDirection: "column",
@@ -34,4 +37,4 @@ export const UnderFormLinkSharedStyles = {
 			textDecoration: "underline",
 		},
 	},
-}
+};

@@ -28,9 +28,17 @@ export const PriceInfoSharedStyles = {
 			},
 		}),
 		[theme.breakpoints.down("lg")]: {
+			"& h3": {
+				fontSize: '1.5rem',
+			},
 			"& p": {
-				fontSize: "1.5rem",
+				fontSize: "1.2rem",
 			},
 		},
+		[theme.breakpoints.down("md")]: {
+			"& h3": {
+				fontSize: '1.3rem',
+			},
+		}
 	}),
 };

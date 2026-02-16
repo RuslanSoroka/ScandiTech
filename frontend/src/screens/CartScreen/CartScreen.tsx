@@ -6,16 +6,18 @@ import { styles } from "./CartScreen.styles";
 import CartSubtotal from "../../components/CartSubtotal";
 
 const CartScreen = () => {
-	const { cartItems } = useAppSelector((state) => state.cart);
+	const cartItemIDs  = useAppSelector((state) => state.cart.cartItems.map(item => item._id));
+console.log(cartItemIDs);
+
 
 	return (
 		<Box sx={styles.cartScreen}>
 			<Typography variant="h1">Cart</Typography>
 			<Box sx={styles.contentWrapper}>
 				<Stack sx={styles.itemsWrapper}>
-					{cartItems &&
-						cartItems.map((item: ICartItem) => (
-							<CartItem key={item._id} itemData={item} />
+					{cartItemIDs &&
+						cartItemIDs.map((item: string) => (
+							<CartItem key={item} itemId={item} />
 						))}
 				</Stack>
 				<Box sx={styles.subtotalWrapper}>

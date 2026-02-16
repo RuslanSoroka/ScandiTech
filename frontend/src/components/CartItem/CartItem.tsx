@@ -1,4 +1,3 @@
-import { ICartItem } from "../../models";
 import {
 	Card,
 	CardContent,
@@ -13,18 +12,24 @@ import { styles } from "./CartItem.styles";
 import IconButton from "@mui/material/IconButton";
 import { FaTrash } from "react-icons/fa";
 import { deleteItem, updateQuantity } from "../../redux/slices/cartSlice";
-import { useAppDispatch } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { memo } from "react";
 
 interface CartItemProps {
-	itemData: ICartItem;
-	key: string;
+	itemId: string;
 }
 
-const CartItem = ({ key, itemData }: CartItemProps) => {
-	const { _id, image, quantity, price, name, countInStock } = itemData;
+const CartItem = memo(({ itemId }: CartItemProps) => {
 	const dispatch = useAppDispatch();
+	const cartItem = useAppSelector((state) => state.cart.cartItems.find(item => item._id === itemId));
+	if (!cartItem) {
+		return null;
+	}
+	const { _id, image, quantity, price, name, countInStock } = cartItem;
+
 
 	const handleChange = (event: SelectChangeEvent) => {
+		event.preventDefault();
 		const selectedQuantity: number = Number(event.target.value);
 		dispatch(updateQuantity({ _id, quantity: selectedQuantity }));
 	};
@@ -33,7 +38,7 @@ const CartItem = ({ key, itemData }: CartItemProps) => {
 		dispatch(deleteItem(id));
 	};
 	return (
-		<Card key={key} sx={styles.cartItem}>
+		<Card sx={styles.cartItem}>
 			<CardMedia
 				sx={styles.itemImage}
 				component="img"
@@ -51,7 +56,7 @@ const CartItem = ({ key, itemData }: CartItemProps) => {
 				</Typography>
 				<Box sx={styles.actionsBox}>
 					<Select
-						variant={"outlined"}
+						variant="outlined"
 						value={quantity.toString()}
 						onChange={handleChange}
 					>
@@ -72,6 +77,6 @@ const CartItem = ({ key, itemData }: CartItemProps) => {
 			</CardContent>
 		</Card>
 	);
-};
+});
 
 export default CartItem;
