@@ -1,16 +1,11 @@
-import {styles} from "../../../screens/HomeScreen/HomeScreen.styes";
+import { styles } from "../../../screens/HomeScreen/HomeScreen.styes";
 import { Box, Grid, Typography } from "@mui/material";
 import ProductSkeleton from "../ProductSkeleton";
 
 const HomeScreenSkeleton = () => {
 	return (
-		<Box>
-			<Typography
-				sx={styles.title}
-				variant="h1"
-			>
-				Products
-			</Typography>
+		<Box sx={styles.homeScreen}>
+			<Typography variant="h1">Products</Typography>
 			<Grid container spacing={2}>
 				{[...Array(8)].map((_, index) => {
 					return (

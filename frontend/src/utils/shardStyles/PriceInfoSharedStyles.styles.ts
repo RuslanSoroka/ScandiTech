@@ -17,11 +17,6 @@ export const PriceInfoSharedStyles = {
 		padding: theme.spacing(3),
 		gap: theme.spacing(3),
 
-		"> :last-child": {
-			fontWeight: {
-				fontWeight: "700",
-			},
-		},
 		...(!finalOrder && {
 			"&:last-child": {
 				justifyContent: "flex-end",
@@ -29,7 +24,7 @@ export const PriceInfoSharedStyles = {
 		}),
 		[theme.breakpoints.down("lg")]: {
 			"& h3": {
-				fontSize: '1.5rem',
+				fontSize: "1.5rem",
 			},
 			"& p": {
 				fontSize: "1.2rem",
@@ -37,8 +32,8 @@ export const PriceInfoSharedStyles = {
 		},
 		[theme.breakpoints.down("md")]: {
 			"& h3": {
-				fontSize: '1.3rem',
+				fontSize: "1.3rem",
 			},
-		}
+		},
 	}),
 };

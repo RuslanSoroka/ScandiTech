@@ -28,12 +28,10 @@ const styles = {
 		},
 	}),
 	content: (theme: Theme) => ({
-		fontSize: "1.3rem",
 		[theme.breakpoints.down("sm")]: {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
-			fontSize: "1rem",
 			maxWidth: "14rem",
 		},
 	}),
@@ -43,7 +41,6 @@ const styles = {
 		whiteSpace: "nowrap",
 		textOverflow: "ellipsis",
 		textDecoration: "underline",
-		fontSize: "1.153em",
 		cursor: "pointer",
 		[theme.breakpoints.down("sm")]: {
 			whiteSpace: "wrap",

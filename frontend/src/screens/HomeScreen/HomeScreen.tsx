@@ -17,19 +17,12 @@ const HomeScreen = () => {
 	}
 
 	if (isFetching) {
-		return (
-			<HomeScreenSkeleton />
-		);
+		return <HomeScreenSkeleton />;
 	}
 
 	return (
-		<Box>
-			<Typography
-				sx={styles.title}
-				variant="h1"
-			>
-				Products
-			</Typography>
+		<Box sx={styles.homeScreen}>
+			<Typography variant="h1">Products</Typography>
 			<Grid container spacing={2}>
 				{products?.map((product) => {
 					return (

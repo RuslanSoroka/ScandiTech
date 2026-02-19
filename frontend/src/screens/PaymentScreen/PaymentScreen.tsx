@@ -33,7 +33,7 @@ const PaymentScreen = () => {
 				<Box component="form" onSubmit={(e) => {
 					submitHandler(e);
 				}}>
-					<FormControl>
+					<FormControl sx={{gap: 1}}>
 						<FormLabel sx={styles.formLabel} id="payment-radio-buttons-group-label">Select Method</FormLabel>
 						<RadioGroup
 							aria-labelledby="payment-radio-buttons-group-label"

@@ -89,24 +89,42 @@ const theme = createTheme({
 			fontSize: "3rem",
 			fontWeight: 500,
 			lineHeight: 1.2,
+			"@media screen and (max-width: 64em)": {
+				fontSize: "2.2rem",
+			},
+			"@media screen and (max-width: 48em)": {
+				fontSize: "1.7rem",
+			},
 		},
 		h2: {
-			fontSize: "2.5rem",
+			fontSize: "2.2rem",
 			fontWeight: 500,
 			lineHeight: 1.3,
+			"@media screen and (max-width: 64em)": {
+				fontSize: "1.8rem",
+			},
+			"@media screen and (max-width: 48em)": {
+				fontSize: "1.2rem",
+			},
 		},
 		h3: {
-			fontSize: "2rem",
+			fontSize: "1.8rem",
 			fontWeight: 500,
 			lineHeight: 1.4,
+			"@media screen and (max-width: 64em)": {
+				fontSize: "1.4rem",
+			},
 		},
 		h4: {
-			fontSize: "1.5rem",
+			fontSize: "1.4rem",
 			fontWeight: 500,
 			lineHeight: 1.5,
+			"@media screen and (max-width: 64em)": {
+				fontSize: "1.25rem",
+			},
 		},
 		h5: {
-			fontSize: "1.25rem",
+			fontSize: "1.1rem",
 			fontWeight: 400,
 			lineHeight: 1.6,
 		},

@@ -1,14 +1,11 @@
 import { useAppSelector } from "../../hooks/reduxHooks";
 import { Box, Stack, Typography } from "@mui/material";
 import CartItem from "../../components/CartItem";
-import { ICartItem } from "../../models";
 import { styles } from "./CartScreen.styles";
 import CartSubtotal from "../../components/CartSubtotal";
 
 const CartScreen = () => {
 	const cartItemIDs  = useAppSelector((state) => state.cart.cartItems.map(item => item._id));
-console.log(cartItemIDs);
-
 
 	return (
 		<Box sx={styles.cartScreen}>
