@@ -1,5 +1,5 @@
 import { Theme } from "@mui/material";
-const styles = {
+export const styles = {
 	card: (theme: Theme) => ({
 		padding: "1rem",
 		height: "100%",
@@ -7,13 +7,16 @@ const styles = {
 		flexDirection: "column",
 		gap: "1rem",
 		[theme.breakpoints.down("sm")]: {
-			flexDirection: "row",
+			flexDirection: "row" as const,
+		},
+		"@media screen and (max-width: 23.4375em)": {
+			gap: ".5rem",
 		},
 	}),
 	img: (theme: Theme) => ({
 		width: "100%",
-		height: "auto",
-		"& img": {
+		aspectRatio: "1/.8",
+		"& img,span": {
 			width: "100%",
 			height: "100%",
 			objectFit: "cover",
@@ -32,7 +35,12 @@ const styles = {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "center",
+			width: "100%",
 			maxWidth: "14rem",
+			gap: "5px",
+		},
+		"@media screen and (max-width: 23.4375em)": {
+			maxWidth: "10rem",
 		},
 	}),
 	productName: (theme: Theme) => ({
@@ -45,10 +53,15 @@ const styles = {
 		[theme.breakpoints.down("sm")]: {
 			whiteSpace: "wrap",
 		},
+		"@media screen and (max-width: 26.4em)": {
+			lineHeight: 1,
+		},
+		"@media screen and (max-width: 23.4375em)": {
+			whiteSpace: "nowrap",
+		},
 	}),
 	price: {
 		fontSize: "inherit",
 		fontWeight: "bold",
 	},
 };
-export default styles;

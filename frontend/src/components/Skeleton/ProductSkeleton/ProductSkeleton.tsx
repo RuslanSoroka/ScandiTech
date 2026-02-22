@@ -1,18 +1,23 @@
-import { Skeleton, Box } from "@mui/material";
-import { styles } from "./ProductSkeleton.styles";
+import { Box, Paper, Skeleton } from "@mui/material";
+import { styles } from "../../Product/Product.styles";
 
 const ProductSkeleton = () => {
 	return (
-		<Box sx={styles.wrapper}>
-			<Box sx={{ height: "60%" }}>
-				<Skeleton variant="rectangular" height={"100%"} width={"100%"} />
+		<Paper sx={styles.card}>
+			<Box sx={styles.img}>
+				<Skeleton
+					variant="rounded"
+					width="100%"
+					height="100%"
+					sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }}
+				/>
 			</Box>
-			<Box>
-				<Skeleton variant="text" height={"3.125rem"} width={"100%"} />
-				<Skeleton variant="text" height={"3.125rem"} width={"100%"} />
-				<Skeleton variant="text" height={"3.125rem"} width={"100%"} />
+			<Box sx={styles.content}>
+				<Skeleton width="100%" sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
+				<Skeleton width="100%" sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
+				<Skeleton width="100%" sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)" }} />
 			</Box>
-		</Box>
+		</Paper>
 	);
 };
 
