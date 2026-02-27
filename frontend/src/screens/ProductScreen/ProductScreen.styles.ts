@@ -1,6 +1,6 @@
 import { Theme } from "@mui/material";
 
-const styles = {
+export const styles = {
 	productScreenContent: (theme: Theme) => ({
 		display: "flex",
 		flexDirection: "row",
@@ -29,7 +29,6 @@ const styles = {
 		},
 	}),
 	productDetailsWrapper: (theme: Theme) => ({
-		padding: theme.spacing(2),
 		width: "100%",
 		maxWidth: "37rem",
 		[theme.breakpoints.down("lg")]: {
@@ -50,4 +49,3 @@ const styles = {
 		},
 	}),
 };
-export default styles;

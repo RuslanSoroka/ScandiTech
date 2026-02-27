@@ -5,8 +5,8 @@ const AddToCartWidgetSkeleton = () => {
 		<Box sx={{ width: "100%", aspectRatio: "2/1.3" }}>
 			<Skeleton
 				variant="rectangular"
-				height={"13.75rem"}
-				width={"100%"}
+				height="100%"
+				width="100%"
 				sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", borderRadius: 3 }}
 			/>
 		</Box>

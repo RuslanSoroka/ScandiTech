@@ -51,7 +51,7 @@ const CartItem = memo(({ itemId }: CartItemProps) => {
 				<Typography sx={styles.itemName} component="h3" variant="h5">
 					{name}
 				</Typography>
-				<Typography sx={styles.price} variant={"subtitle1"}>
+				<Typography sx={styles.price} variant="subtitle1">
 					Price: ${price}
 				</Typography>
 				<Box sx={styles.actionsBox}>

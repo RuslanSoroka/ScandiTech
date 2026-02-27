@@ -202,7 +202,8 @@ const theme = createTheme({
 		MuiSkeleton: {
 			styleOverrides: {
 				root: {
-					backgroundColor: "rgb(240, 240, 240)",
+					backgroundColor: "rgba(0, 0, 0, 0.1)",
+					borderRadius: 6,
 				},
 			},
 		},

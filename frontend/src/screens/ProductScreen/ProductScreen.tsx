@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import styles from "./ProductScreen.styles";
+import {styles} from "./ProductScreen.styles";
 import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
 import BackButton from "../../components/UI/BackButton";
 import ErrorComponent from "../../components/UI/ErrorComponent";
@@ -31,9 +31,9 @@ const ProductScreen = () => {
 		return <ErrorComponent />;
 	}
 
-	if (isFetching) {
+	if (!isFetching) {
 		return (
-			<Box className="productScreen">
+			<Box className="product__screen">
 				<BackButton link="/" />
 				<Box sx={styles.productScreenContent}>
 					<Box sx={styles.imageGalleryWrapper}>
@@ -52,7 +52,7 @@ const ProductScreen = () => {
 
 	return (
 		product && (
-			<Box className="productScreen">
+			<Box className="product__screen">
 				<BackButton link="/" />
 				<Box sx={styles.productScreenContent}>
 					<Box sx={styles.imageGalleryWrapper}>
