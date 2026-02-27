@@ -7,7 +7,6 @@ const ImageGallerySkeleton = () => {
 				variant="rectangular"
 				height="100%"
 				width="100%"
-				sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", borderRadius: 3 }}
 			/>
 		</Box>
 	);

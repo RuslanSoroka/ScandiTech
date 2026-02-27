@@ -18,11 +18,13 @@ export const styles = {
 			gridTemplateAreas: "'gallery'" + "'details'" + "'widget'",
 			gridTemplateColumns: "1fr",
 			gridTemplateRows: "1fr",
+			justifyItems: "center"
 		},
 	}),
 	imageGalleryWrapper: (theme: Theme) => ({
 		maxWidth: "30rem",
 		width: "100%",
+		aspectRario: "1/.8",
 		[theme.breakpoints.down("lg")]: {
 			gridArea: "gallery",
 			justifySelf: "center",

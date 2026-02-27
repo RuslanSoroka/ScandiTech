@@ -14,6 +14,8 @@ const ProductDetailsSkeleton = () => {
 				<Skeleton variant="rectangular" />
 			</Typography>
 			<Typography variant="body1">
+				<Skeleton sx={{ marginBottom: 0.5 }} variant="rectangular" />
+				<Skeleton sx={{ marginBottom: 0.5 }} variant="rectangular" />
 				<Skeleton variant="rectangular" />
 			</Typography>
 		</Box>

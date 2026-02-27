@@ -1,15 +1,23 @@
-import { Box, Skeleton } from "@mui/material";
+import { Box, Skeleton, Paper, Button } from "@mui/material";
+import { PriceInfoSharedStyles as productStyles } from "../../../../utils/shardStyles/PriceInfoSharedStyles.styles";
 
 const AddToCartWidgetSkeleton = () => {
 	return (
-		<Box sx={{ width: "100%", aspectRatio: "2/1.3" }}>
-			<Skeleton
-				variant="rectangular"
-				height="100%"
-				width="100%"
-				sx={{ backgroundColor: "rgba(0, 0, 0, 0.1)", borderRadius: 3 }}
-			/>
-		</Box>
+		<Paper sx={productStyles.addToCartWidget}>
+			<Box sx={productStyles.flexWrapper}>
+				<Skeleton width="50%" />
+				<Skeleton width="50%" />
+			</Box>
+			<Box sx={productStyles.flexWrapper}>
+				<Skeleton width="50%" />
+				<Skeleton width="50%" />
+			</Box>
+			<Box sx={productStyles.flexWrapper}>
+				<Button variant="contained" disabled={true}>
+					<Skeleton width="100%" height="100%"></Skeleton>
+				</Button>
+			</Box>
+		</Paper>
 	);
 };
 
