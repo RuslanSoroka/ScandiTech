@@ -5,9 +5,7 @@ import ProductSkeleton from "../../components/Skeleton/ProductSkeleton";
 import ErrorComponent from "../../components/UI/ErrorComponent";
 import { styles } from "./HomeScreen.styes";
 import HomeScreenSkeleton from "../../components/Skeleton/HomeScreenSkeleton";
-
-const Product = lazy(() => import("../../components/Product"));
-const MemoizedProduct = memo(Product);
+import Product from "../../components/Product";
 
 const HomeScreen = () => {
 	const { data: products, isFetching, isError } = useGetAllProductsQuery();
@@ -27,9 +25,7 @@ const HomeScreen = () => {
 				{products?.map((product) => {
 					return (
 						<Grid xs={12} sm={6} md={4} lg={3} item key={product._id}>
-							<Suspense fallback={<ProductSkeleton />}>
-								<MemoizedProduct product={product} />
-							</Suspense>
+							<Product product={product} />
 						</Grid>
 					);
 				})}
