@@ -1,77 +1,45 @@
 import { Box } from "@mui/material";
 import { useParams } from "react-router-dom";
-import {styles} from "./ProductScreen.styles";
+import { styles } from "./ProductScreen.styles";
 import { useGetProductByIdQuery } from "../../redux/apiSlices/productsSlice";
+import AddToCartWidget from "../../components/AddToCartWidget/AddToCartWidget";
+import ProductDetails from "../../components/ProductDetails";
+import ProductImageGallery from "../../components/ProductImageGallery";
 import BackButton from "../../components/UI/BackButton";
 import ErrorComponent from "../../components/UI/ErrorComponent";
-
-import { lazy, memo, Suspense } from "react";
-import ImageGallerySkeleton from "../../components/Skeleton/ProductScreenSleletons/ImageGallerySkeleton";
-import ProductDetailsSkeleton from "../../components/Skeleton/ProductScreenSleletons/ProductDetailsSkeleton";
-import AddToCartWidgetSkeleton from "../../components/Skeleton/ProductScreenSleletons/AddToCartWidgetSkeleton";
-
-const ProductDetails = lazy(() => import("../../components/ProductDetails"));
-const MemoizedProductDetails = memo(ProductDetails);
-const ProductImageGallery = lazy(
-	() => import("../../components/ProductImageGallery"),
-);
-const MemoizedProductImageGallery = memo(ProductImageGallery);
-const AddToCartWidget = lazy(
-	() => import("../../components/AddToCartWidget/AddToCartWidget"),
-);
-const MemoizedAddToCartWidget = memo(AddToCartWidget);
+import ProductScreenSkeleton from "../../components/Skeleton/ProductScreenSleletons/ProductScreenSkeleton";
+import NAVIGATION_LINKS from "../../routes/links";
 
 const ProductScreen = () => {
 	const { id: productId } = useParams();
-	const { data: product, isError: isErrorGetProduct, isFetching } = useGetProductByIdQuery(
-		productId ?? "",
-	);
+	const {
+		data: product,
+		isError: isErrorGetProduct,
+		isFetching,
+	} = useGetProductByIdQuery(productId ?? "");
 
-	if (isErrorGetProduct) {
-		return <ErrorComponent />;
-	}
+	if (isErrorGetProduct) <ErrorComponent />;
 
-	if (!isFetching) {
-		return (
-			<Box className="product__screen">
-				<BackButton link="/" />
-				<Box sx={styles.productScreenContent}>
-					<Box sx={styles.imageGalleryWrapper}>
-						<ImageGallerySkeleton />
-					</Box>
-					<Box sx={styles.productDetailsWrapper}>
-						<ProductDetailsSkeleton />
-					</Box>
-					<Box sx={styles.addToCartWrapper}>
-						<AddToCartWidgetSkeleton />
-					</Box>
-				</Box>
-			</Box>
-		);
+	if (isFetching) {
+		return <ProductScreenSkeleton />;
 	}
 
 	return (
 		product && (
 			<Box className="product__screen">
-				<BackButton link="/" />
+				<BackButton link={NAVIGATION_LINKS.home} />
 				<Box sx={styles.productScreenContent}>
 					<Box sx={styles.imageGalleryWrapper}>
-						<Suspense fallback={<ImageGallerySkeleton />}>
-							<MemoizedProductImageGallery
-								src={product.image}
-								productName={product.name}
-							/>
-						</Suspense>
+						<ProductImageGallery
+							src={product.image}
+							productName={product.name}
+						/>
 					</Box>
 					<Box sx={styles.productDetailsWrapper}>
-						<Suspense fallback={<ProductDetailsSkeleton />}>
-							<MemoizedProductDetails productItem={product} />
-						</Suspense>
+						<ProductDetails productItem={product} />
 					</Box>
 					<Box sx={styles.addToCartWrapper}>
-						<Suspense fallback={<AddToCartWidgetSkeleton />}>
-							<MemoizedAddToCartWidget productItem={product} />
-						</Suspense>
+						<AddToCartWidget productItem={product} />
 					</Box>
 				</Box>
 			</Box>

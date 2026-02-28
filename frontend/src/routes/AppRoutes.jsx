@@ -15,24 +15,25 @@ import PaymentScreen from "../screens/PaymentScreen/PaymentScreen";
 import PlaceOrderScreen from "../screens/PlaceOrderScreen/PlaceOrderScreen";
 import OrderScreen from "../screens/OrderScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ROUTES from "./links";
 
 let router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
-			<Route index path="/" element={<HomeScreen />} />
-			<Route path="/product/:id" element={<ProductScreen />} />
-			<Route path="/cart" element={<CartScreen />} />
-			<Route path={"/login"} element={<LoginScreen />} />
-			<Route path={"/registration"} element={<RegistrationScreen />} />
+			<Route index path={ROUTES.home} element={<HomeScreen />} />
+			<Route path={ROUTES.productPattern} element={<ProductScreen />} />
+			<Route path={ROUTES.cart} element={<CartScreen />} />
+			<Route path={ROUTES.login} element={<LoginScreen />} />
+			<Route path={ROUTES.registration} element={<RegistrationScreen />} />
 			<Route path="" element={<PrivateRoute />}>
-				<Route path="/shipping" element={<ShippingScreen />} />
-				<Route path="/payment" element={<PaymentScreen />} />
-				<Route path="placeorder" element={<PlaceOrderScreen />} />
-				<Route path={"/orders/:id"} element={<OrderScreen/>}></Route>
-				<Route path={"/profile"} element={<ProfileScreen/>}></Route>
+				<Route path={ROUTES.shipping} element={<ShippingScreen />} />
+				<Route path={ROUTES.payment} element={<PaymentScreen />} />
+				<Route path={ROUTES.orderPlace} element={<PlaceOrderScreen />} />
+				<Route path={ROUTES.orderPattern} element={<OrderScreen />}></Route>
+				<Route path={ROUTES.profile} element={<ProfileScreen />}></Route>
 			</Route>
 		</Route>
-	),
+	)
 );
 
 export default router;
