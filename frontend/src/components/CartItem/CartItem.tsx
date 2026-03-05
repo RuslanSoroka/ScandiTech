@@ -27,7 +27,6 @@ const CartItem = memo(({ itemId }: CartItemProps) => {
 	}
 	const { _id, image, quantity, price, name, countInStock } = cartItem;
 
-
 	const handleChange = (event: SelectChangeEvent) => {
 		event.preventDefault();
 		const selectedQuantity: number = Number(event.target.value);
