@@ -9,6 +9,7 @@ import { IShippingInfo } from "../../models";
 import FormInput from "../../components/UI/FormInput";
 import ShippingSchema from "../../utils/validationShemas/ShippingSchema";
 import CheckoutSteps from "../../components/UI/CheckoutSteps";
+import NAVIGATION_LINKS from "src/routes/links";
 
 
 const ShippingScreen = () => {
@@ -27,7 +28,7 @@ const ShippingScreen = () => {
 
 	const onSubmit: SubmitHandler<IShippingInfo> = async (data: IShippingInfo) => {
 		dispatch(addShippingAddress(data));
-		navigate("/payment");
+		navigate(NAVIGATION_LINKS.payment);
 	};
 	return (
 		<>
@@ -36,10 +37,10 @@ const ShippingScreen = () => {
 				<Typography variant="h1">Shipping</Typography>
 				<Box sx={shippingStyles.formContainer} component="form" onSubmit={handleSubmit(onSubmit)}>
 					<Box sx={shippingStyles.formContent}>
-						<FormInput name={"address"} label={"Address"} control={control} />
-						<FormInput name={"city"} label={"City"} control={control} />
-						<FormInput name={"postalCode"} label={"Postal Code"} control={control} />
-						<FormInput name={"country"} label={"Country"} control={control} />
+						<FormInput name="address" label="Address" control={control} />
+						<FormInput name="city" label="City" control={control} />
+						<FormInput name="postalCode" label="Postal Code" control={control} />
+						<FormInput name="country" label="Country" control={control} />
 					</Box>
 					<Box sx={shippingStyles.formSubmit}>
 						<Button type="submit" variant="contained">

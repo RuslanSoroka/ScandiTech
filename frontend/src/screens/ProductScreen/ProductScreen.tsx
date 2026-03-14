@@ -8,7 +8,7 @@ import ProductImageGallery from "../../components/ProductImageGallery";
 import BackButton from "../../components/UI/BackButton";
 import ErrorComponent from "../../components/UI/ErrorComponent";
 import ProductScreenSkeleton from "../../components/Skeleton/ProductScreenSleletons/ProductScreenSkeleton";
-import NAVIGATION_LINKS from "../../routes/links";
+import NAVIGATION_LINKS from "src/routes/links";
 
 const ProductScreen = () => {
 	const { id: productId } = useParams();
@@ -20,9 +20,7 @@ const ProductScreen = () => {
 
 	if (isErrorGetProduct) <ErrorComponent />;
 
-	if (isFetching) {
-		return <ProductScreenSkeleton />;
-	}
+	if (isFetching) <ProductScreenSkeleton />;
 
 	return (
 		product && (

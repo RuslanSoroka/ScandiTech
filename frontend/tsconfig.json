@@ -13,7 +13,8 @@
 		"resolveJsonModule": true, // Allow importing of JSON files as modules.
 		"isolatedModules": true, // Ensure that each file can be safely transpiled independently.
 		"noEmit": true, // Don't emit output files (e.g., JavaScript files) if not needed.
-		"jsx": "react-jsx" // Enable JSX syntax for React with the new JSX Transform.
+		"jsx": "react-jsx", // Enable JSX syntax for React with the new JSX Transform.
+		"baseUrl": ".",
 	},
 	"include": [
 		"src/**/*" // Include all files in the src directory.

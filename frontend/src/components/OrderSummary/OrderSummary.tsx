@@ -7,19 +7,26 @@ import { useCreateOrderMutation } from "../../redux/apiSlices/orderApiSlice";
 import { clearCartItems } from "../../redux/slices/cartSlice";
 import { isApiError } from "../../utils/helpers/typeGuards";
 import toast from "react-hot-toast";
+import { formatNumber } from "src/utils/helpers/updateCart";
+import NAVIGATION_LINKS from "src/routes/links";
 
 const OrderSummary = () => {
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-	const [createOrder] = useCreateOrderMutation();
+	const [createOrder, { isLoading }] = useCreateOrderMutation();
 	const cart = useAppSelector((state) => state.cart);
+
 	useEffect(() => {
 		if (!cart.shippingAddress.address) {
-			navigate("/shipping");
+			navigate(NAVIGATION_LINKS.shipping);
 		} else if (!cart.paymentMethod) {
-			navigate("/payment");
+			navigate(NAVIGATION_LINKS.payment);
 		}
 	}, [cart.shippingAddress.address, cart.paymentMethod, navigate]);
+
+	const formatedPrice = formatNumber(
+		cart.totalPrice - cart.shippingPrice - cart.taxPrice
+	);
 
 	const placeOrderHandler = async () => {
 		try {
@@ -48,7 +55,7 @@ const OrderSummary = () => {
 		<Paper sx={orderStyles.addToCartWidget}>
 			<Box sx={orderStyles.flexWrapper}>
 				<Typography variant="body1">Price:</Typography>
-				<Typography variant="body1">${cart.totalPrice - cart.shippingPrice - cart.taxPrice}</Typography>
+				<Typography variant="body1">${formatedPrice}</Typography>
 			</Box>
 			<Box sx={orderStyles.flexWrapper}>
 				<Typography variant="body1">Shipping:</Typography>
@@ -65,9 +72,8 @@ const OrderSummary = () => {
 
 			<Box sx={orderStyles.flexWrapper}>
 				<Button
-					onClick={
-						placeOrderHandler
-					}
+					disabled={isLoading}
+					onClick={placeOrderHandler}
 					variant="contained"
 				>
 					Place Order

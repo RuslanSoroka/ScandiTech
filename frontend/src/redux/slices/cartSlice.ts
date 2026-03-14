@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICartItem, ICartState, IShippingInfo } from "../../models";
 import { updateCart } from "../../utils/helpers/updateCart";
+import { RootState } from "../store";
 
 export interface IUpdateQuantity {
 	_id: string;
@@ -11,14 +12,14 @@ const initialState: ICartState =
 	localStorage.getItem("cart") !== null
 		? JSON.parse(localStorage.getItem("cart")!)
 		: {
-			cartItems: [],
-			price: 0,
-			shippingPrice: 0,
-			taxPrice: 0,
-			totalPrice: 0,
-			shippingAddress: {},
-			paymentMethod: "",
-		};
+				cartItems: [],
+				price: 0,
+				shippingPrice: 0,
+				taxPrice: 0,
+				totalPrice: 0,
+				shippingAddress: {},
+				paymentMethod: "",
+			};
 
 const cartSlice = createSlice({
 	name: "cart",
@@ -27,7 +28,7 @@ const cartSlice = createSlice({
 		addCartItem: (state, action: PayloadAction<ICartItem>) => {
 			const newItem: ICartItem = action.payload;
 			const existItem = state.cartItems.find(
-				(item) => item._id === newItem._id,
+				(item) => item._id === newItem._id
 			);
 
 			if (existItem) {
@@ -42,7 +43,7 @@ const cartSlice = createSlice({
 		updateQuantity: (state, action: PayloadAction<IUpdateQuantity>) => {
 			const { _id, quantity } = action.payload;
 			const updatedItemIndex = state.cartItems.findIndex(
-				(item) => item._id === _id,
+				(item) => item._id === _id
 			);
 
 			if (updatedItemIndex > -1) {
@@ -71,6 +72,10 @@ const cartSlice = createSlice({
 		},
 	},
 });
+const selectCartItems = (state: RootState) => state.cart.cartItems;
+export const selectCartItemsIds = createSelector([selectCartItems], (cartItems) =>
+	cartItems.map((item) => item._id)
+);
 
 export const {
 	addCartItem,

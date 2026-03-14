@@ -1,21 +1,21 @@
 import { useAppSelector } from "../../hooks/reduxHooks";
-import { createSelector } from "@reduxjs/toolkit";
 import { Box, Stack, Typography } from "@mui/material";
 import { styles } from "./CartScreen.styles";
 import CartItem from "../../components/CartItem";
 import CartSubtotal from "../../components/CartSubtotal";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import NAVIGATION_LINKS from "src/routes/links";
+import { selectCartItemsIds } from "src/redux/slices/cartSlice";
 
 const CartScreen = () => {
-	const cartState = useAppSelector((state) => state.cart);
+	const navigate = useNavigate();
+	const cartItemsIds = useAppSelector(selectCartItemsIds);
 
-	const selectCartIds = createSelector(
-		[(state) => state.cartItems],
-		(cartItems: any) => {
-			return cartItems.map((item: any) => item._id);
-		}
-	);
+	useEffect(() => {
+		if (cartItemsIds.length < 1) navigate(NAVIGATION_LINKS.home);
+	}, [cartItemsIds, navigate]);
 
-	const cartItemsIds = selectCartIds(cartState);
 	return (
 		<Box sx={styles.cartScreen}>
 			<Typography variant="h1">Cart</Typography>

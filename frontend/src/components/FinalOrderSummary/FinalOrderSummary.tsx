@@ -10,6 +10,7 @@ import {
 } from "@paypal/react-paypal-js";
 import { usePayOrderMutation } from "../../redux/apiSlices/orderApiSlice";
 import { useTheme } from "@mui/material";
+import { formatNumber } from "src/utils/helpers/updateCart";
 
 interface IFinalOrderSummaryProps {
 	refetch: () => void;
@@ -31,6 +32,7 @@ const FinalOrderSummary = ({
 	const theme = useTheme();
 	const [payOrder] = usePayOrderMutation();
 	const [{ isPending }] = usePayPalScriptReducer();
+	const formatedPrice = formatNumber(totalPrice - shipping - taxPrice);
 
 	const createOrder: PayPalButtonsComponentProps["createOrder"] = (
 		data,
@@ -79,9 +81,7 @@ const FinalOrderSummary = ({
 					<Typography variant="body1">Total Price:</Typography>
 				</Box>
 				<Box>
-					<Typography variant="body1">
-						${totalPrice - shipping - taxPrice}
-					</Typography>
+					<Typography variant="body1">{`$${formatedPrice}`}</Typography>
 					<Typography variant="body1">${shipping}</Typography>
 					<Typography variant="body1">${taxPrice}</Typography>
 					<Typography variant="body1">${totalPrice}</Typography>

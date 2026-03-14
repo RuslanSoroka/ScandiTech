@@ -5,6 +5,7 @@ import { useGetSingleOrderQuery } from "../../redux/apiSlices/orderApiSlice";
 import OrderListItems from "../../components/OrderListItems";
 import StatusBadge from "../../components/UI/StatusBadge";
 import FinalOrderSummary from "../../components/FinalOrderSummary";
+import FinalOrderScreenSkeleton from "src/components/Skeleton/FinalOrderScreenSkeletons/FinalOrderScreenSkeleton/FinalOrderScreenSkeleton";
 
 const OrderScreen = () => {
 	const { id: orderId } = useParams();
@@ -13,9 +14,11 @@ const OrderScreen = () => {
 		isLoading,
 		refetch,
 	} = useGetSingleOrderQuery(orderId ?? "");
+
 	if (isLoading) {
-		return;
+		return <FinalOrderScreenSkeleton orderId={orderId ?? ""} />;
 	}
+
 	const { address, city, postalCode, country } = orderInfo.shippingAddress;
 	const fullShippingAddress = `${address}, ${city}, ${postalCode}, ${country}`;
 
@@ -25,6 +28,7 @@ const OrderScreen = () => {
 	const paymentStatusText = orderInfo.isPaid
 		? `Paid at: ${orderInfo.paidAt}`
 		: "Not Paid";
+
 	return (
 		<>
 			<Typography sx={orderStyles.title} variant="h1">

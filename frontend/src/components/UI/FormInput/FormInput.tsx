@@ -5,7 +5,6 @@ import { Box, Theme, IconButton } from "@mui/material";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-
 interface IFormInputProps<T extends FieldValues> {
 	name: Path<T>;
 	label: string;
@@ -49,7 +48,10 @@ const FormInput = <T extends FieldValues>({
 				)}
 			/>
 			{isTypePassword && (
-				<IconButton sx={styles.showPasswordButton} onClick={togglePasswordVisibility}>
+				<IconButton
+					sx={styles.showPasswordButton}
+					onClick={togglePasswordVisibility}
+				>
 					{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
 				</IconButton>
 			)}
